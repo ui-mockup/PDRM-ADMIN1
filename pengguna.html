@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="ms" data-theme="pdrm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengguna &amp; Peranan — Pengurusan Kandungan Portal PDRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- daisyUI 5 + Tailwind CSS 4 (asas sama seperti templat Nexus) -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.54.1/dist/apexcharts.min.js"></script>
+
+  <style>
+    /* Tema "pdrm" — sama seperti laman awam V3 */
+    [data-theme="pdrm"] {
+      color-scheme: light;
+      --color-base-100: #ffffff;
+      --color-base-200: #f2f5f9;
+      --color-base-300: #dfe5ee;
+      --color-base-content: #13233a;
+      --color-primary: #0b2744;
+      --color-primary-content: #ffffff;
+      --color-secondary: #c9a227;
+      --color-secondary-content: #13233a;
+      --color-accent: #c8102e;
+      --color-accent-content: #ffffff;
+      --color-neutral: #061a2f;
+      --color-neutral-content: #ffffff;
+      --color-info: #2563eb;
+      --color-info-content: #ffffff;
+      --color-success: #16a34a;
+      --color-success-content: #ffffff;
+      --color-warning: #f59e0b;
+      --color-warning-content: #13233a;
+      --color-error: #dc2626;
+      --color-error-content: #ffffff;
+      --radius-selector: 0.375rem;
+      --radius-field: 0.375rem;
+      --radius-box: 0.625rem;
+      --border: 1px;
+      --depth: 0;
+      --noise: 0;
+    }
+  </style>
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+      --font-heading: "Montserrat", "Poppins", ui-sans-serif, sans-serif;
+      /* Daftar token daisyUI supaya utiliti Tailwind mengenalinya */
+      --color-base-100: #ffffff;
+      --color-base-200: #f2f5f9;
+      --color-base-300: #dfe5ee;
+      --color-base-content: #13233a;
+      --color-primary: #0b2744;
+      --color-primary-content: #ffffff;
+      --color-secondary: #c9a227;
+      --color-secondary-content: #13233a;
+      --color-accent: #c8102e;
+      --color-accent-content: #ffffff;
+      --color-neutral: #061a2f;
+      --color-neutral-content: #ffffff;
+      --color-info: #2563eb;
+      --color-success: #16a34a;
+      --color-warning: #f59e0b;
+      --color-error: #dc2626;
+      --radius-box: 0.625rem;
+      --radius-field: 0.375rem;
+      --radius-selector: 0.375rem;
+    }
+    @layer base {
+      body { @apply bg-base-200 text-base-content antialiased; }
+      h1, h2, h3, .font-heading { font-family: var(--font-heading); }
+    }
+    /* Menu sisi (gaya sidebar Nexus) */
+    .side-label { @apply px-3 pt-5 pb-1.5 text-[11px] font-semibold tracking-wider text-white/40 uppercase; }
+    .side-link { @apply flex items-center gap-3 rounded-field px-3 py-2 text-sm text-white/75 transition hover:bg-white/8 hover:text-white; }
+    .side-link iconify-icon { @apply text-[18px] shrink-0; }
+    .side-link.is-active { @apply bg-white/10 text-white font-medium shadow-[inset_3px_0_0_var(--color-secondary)]; }
+    .side-sub { @apply ms-[38px] mt-0.5 space-y-0.5 border-s border-white/10 ps-3; }
+    .side-sub a { @apply block rounded-field px-2 py-1.5 text-[13px] text-white/60 hover:text-white; }
+    details[open] > summary .chev { transform: rotate(90deg); }
+    .badge { white-space: nowrap; }
+    summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body>
+<div class="drawer lg:drawer-open">
+  <input id="admin-drawer" type="checkbox" class="drawer-toggle" />
+
+  <!-- ===================== KANDUNGAN UTAMA ===================== -->
+  <div class="drawer-content flex min-h-screen min-w-0 flex-col">
+
+    <!-- TOPBAR -->
+    <header class="bg-base-100/95 border-base-300 sticky top-0 z-30 flex h-16 items-center gap-3 border-b px-4 backdrop-blur lg:px-6">
+      <label for="admin-drawer" class="btn btn-square btn-ghost btn-sm lg:hidden" aria-label="Buka menu"><iconify-icon icon="lucide:menu" class="text-xl"></iconify-icon></label>
+      <button class="btn btn-ghost border-base-300 text-base-content/60 hidden h-9 w-72 justify-start gap-2 font-normal whitespace-nowrap md:flex" onclick="searchModal.showModal()">
+        <iconify-icon icon="lucide:search" class="text-base"></iconify-icon>
+        Cari di CMS...
+        <kbd class="kbd kbd-sm ms-auto">⌘K</kbd>
+      </button>
+      <div class="ms-auto flex items-center gap-1.5">
+        <a href="../index-v3.html" class="btn btn-sm btn-ghost gap-2 max-sm:btn-square" target="_blank">
+          <iconify-icon icon="lucide:external-link" class="text-base"></iconify-icon><span class="max-sm:hidden">Lihat Portal</span>
+        </a>
+        <div class="dropdown dropdown-end">
+          <button tabindex="0" class="btn btn-sm btn-ghost font-semibold">BM <iconify-icon icon="lucide:chevron-down"></iconify-icon></button>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box border-base-300 z-40 mt-2 w-40 border p-1.5 shadow-lg">
+            <li><a class="menu-active">Bahasa Melayu</a></li><li><a>English</a></li>
+          </ul>
+        </div>
+        <div class="dropdown dropdown-end">
+          <button tabindex="0" class="btn btn-sm btn-ghost btn-square indicator" aria-label="Notifikasi">
+            <span class="indicator-item badge badge-accent badge-xs top-1 right-1 size-2 p-0"></span>
+            <iconify-icon icon="lucide:bell" class="text-lg"></iconify-icon>
+          </button>
+          <div tabindex="0" class="dropdown-content bg-base-100 rounded-box border-base-300 z-40 mt-2 w-80 border shadow-lg">
+            <div class="border-base-300 flex items-center justify-between border-b px-4 py-3"><p class="font-medium">Notifikasi</p><span class="badge badge-sm badge-soft badge-accent">4 baharu</span></div>
+            <ul class="divide-base-300 divide-y text-sm">
+              <li class="flex gap-3 px-4 py-3"><span class="bg-warning/15 text-warning flex size-8 flex-none items-center justify-center rounded-full"><iconify-icon icon="lucide:clock"></iconify-icon></span><span><b class="font-medium">3 kandungan</b> menunggu kelulusan anda<br /><span class="text-base-content/50 text-xs">5 minit lalu</span></span></li>
+              <li class="flex gap-3 px-4 py-3"><span class="bg-info/15 text-info flex size-8 flex-none items-center justify-center rounded-full"><iconify-icon icon="lucide:message-square"></iconify-icon></span><span>Maklum balas baharu daripada orang awam<br /><span class="text-base-content/50 text-xs">22 minit lalu</span></span></li>
+              <li class="flex gap-3 px-4 py-3"><span class="bg-success/15 text-success flex size-8 flex-none items-center justify-center rounded-full"><iconify-icon icon="lucide:check"></iconify-icon></span><span>Banner Deepavali 2026 diterbitkan<br /><span class="text-base-content/50 text-xs">2 jam lalu</span></span></li>
+            </ul>
+            <a class="block px-4 py-2.5 text-center text-sm text-primary hover:bg-base-200">Lihat semua notifikasi</a>
+          </div>
+        </div>
+        <div class="dropdown dropdown-end">
+          <button tabindex="0" class="btn btn-ghost btn-sm h-10 gap-2.5 px-1.5">
+            <div class="avatar avatar-placeholder"><div class="bg-primary text-primary-content w-8 rounded-full"><span class="text-xs font-semibold">PP</span></div></div>
+            <span class="text-start leading-tight max-md:hidden"><span class="block text-sm font-medium">Pentadbir Portal</span><span class="text-base-content/50 block text-xs font-normal">Super Admin</span></span>
+            <iconify-icon icon="lucide:chevron-down" class="text-base-content/50 max-md:hidden"></iconify-icon>
+          </button>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box border-base-300 z-40 mt-2 w-52 border p-1.5 shadow-lg">
+            <li><a><iconify-icon icon="lucide:user"></iconify-icon>Profil Saya</a></li>
+            <li><a><iconify-icon icon="lucide:key-round"></iconify-icon>Tukar Kata Laluan</a></li>
+            <li><a><iconify-icon icon="lucide:settings"></iconify-icon>Tetapan Akaun</a></li>
+            <div class="divider my-1"></div>
+            <li><a class="text-error"><iconify-icon icon="lucide:log-out"></iconify-icon>Log Keluar</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- KANDUNGAN -->
+    <main class="flex-1 p-4 lg:p-6">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 class="text-xl font-bold">Pengguna &amp; Peranan</h1>
+          <div class="breadcrumbs text-base-content/60 p-0 text-sm"><ul><li><a href="index.html">CMS Portal PDRM</a></li><li>Pentadbiran</li><li>Pengguna &amp; Peranan</li></ul></div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button class="btn btn-sm gap-2" id="exportCsv"><iconify-icon icon="lucide:download"></iconify-icon>Eksport CSV</button>
+          <button class="btn btn-sm btn-primary gap-2" onclick="inviteModal.showModal()"><iconify-icon icon="lucide:user-plus"></iconify-icon>Tambah Pengguna</button>
+        </div>
+      </div>
+
+      <div role="tablist" class="tabs tabs-border mt-4 overflow-x-auto whitespace-nowrap">
+        <a role="tab" class="tab tab-active" href="#senarai-pengguna">Senarai Pengguna</a>
+        <a role="tab" class="tab" href="#peranan">Peranan</a>
+        <a role="tab" class="tab" href="#kebenaran">Matriks Kebenaran</a>
+        <a role="tab" class="tab" href="#sesi">Sesi Aktif</a>
+      </div>
+
+      <!-- Statistik -->
+      <div class="mt-5 grid grid-cols-2 gap-4 xl:grid-cols-4">
+        <div class="card bg-base-100 shadow-sm"><div class="card-body gap-1 p-5">
+          <div class="flex items-center justify-between"><p class="text-base-content/60 text-sm">Jumlah Pengguna</p><span class="bg-primary/10 text-primary flex size-9 items-center justify-center rounded-full"><iconify-icon icon="lucide:users" class="text-lg"></iconify-icon></span></div>
+          <p class="font-heading text-2xl font-bold">86</p><p class="text-base-content/50 text-xs">+3 bulan ini</p>
+        </div></div>
+        <div class="card bg-base-100 shadow-sm"><div class="card-body gap-1 p-5">
+          <div class="flex items-center justify-between"><p class="text-base-content/60 text-sm">Aktif</p><span class="bg-success/10 text-success flex size-9 items-center justify-center rounded-full"><iconify-icon icon="lucide:user-check" class="text-lg"></iconify-icon></span></div>
+          <p class="font-heading text-2xl font-bold">79</p><p class="text-base-content/50 text-xs">24 log masuk hari ini</p>
+        </div></div>
+        <div class="card bg-base-100 shadow-sm"><div class="card-body gap-1 p-5">
+          <div class="flex items-center justify-between"><p class="text-base-content/60 text-sm">Menunggu Pengaktifan</p><span class="bg-warning/10 text-warning flex size-9 items-center justify-center rounded-full"><iconify-icon icon="lucide:mail-check" class="text-lg"></iconify-icon></span></div>
+          <p class="font-heading text-2xl font-bold">4</p><p class="text-base-content/50 text-xs">Jemputan belum diterima</p>
+        </div></div>
+        <div class="card bg-base-100 shadow-sm"><div class="card-body gap-1 p-5">
+          <div class="flex items-center justify-between"><p class="text-base-content/60 text-sm">Pengesahan 2 Langkah</p><span class="bg-info/10 text-info flex size-9 items-center justify-center rounded-full"><iconify-icon icon="lucide:shield-check" class="text-lg"></iconify-icon></span></div>
+          <p class="font-heading text-2xl font-bold">92%</p><progress class="progress progress-info h-1.5" value="92" max="100"></progress>
+        </div></div>
+      </div>
+
+      <!-- Senarai pengguna -->
+      <div id="senarai-pengguna" class="card bg-base-100 mt-5 scroll-mt-20 shadow-sm">
+        <div class="card-body p-0">
+          <div class="border-base-300 flex flex-wrap items-center gap-2 border-b p-4">
+            <label class="input input-sm w-full sm:w-64"><iconify-icon icon="lucide:search" class="opacity-50"></iconify-icon><input type="search" id="fSearch" placeholder="Cari nama, e-mel, no. badan..." /></label>
+            <select class="select select-sm w-auto" id="fRole"><option value="">Semua peranan</option></select>
+            <select class="select select-sm w-auto" id="fDept"><option value="">Semua jabatan</option></select>
+            <select class="select select-sm w-auto" id="fStatus"><option value="">Semua status</option><option>Aktif</option><option>Menunggu</option><option>Digantung</option></select>
+            <span class="text-base-content/50 ms-auto text-sm" id="countLabel">—</span>
+          </div>
+          <!-- Tindakan pukal -->
+          <div id="bulkBar" class="bg-primary/5 border-base-300 hidden items-center gap-3 border-b px-4 py-2.5 text-sm">
+            <b id="bulkCount">0</b> dipilih
+            <button class="btn btn-xs gap-1" data-bulk="role"><iconify-icon icon="lucide:shield"></iconify-icon>Tukar peranan</button>
+            <button class="btn btn-xs gap-1" data-bulk="suspend"><iconify-icon icon="lucide:ban"></iconify-icon>Gantung</button>
+            <button class="btn btn-xs gap-1" data-bulk="activate"><iconify-icon icon="lucide:circle-check"></iconify-icon>Aktifkan</button>
+            <button class="btn btn-xs btn-ghost text-error ms-auto gap-1" data-bulk="clear">Batal pilihan</button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="table [&_td]:px-3 [&_th]:px-3">
+              <thead><tr class="text-base-content/60">
+                <th class="w-10"><input type="checkbox" class="checkbox checkbox-sm" id="checkAll" aria-label="Pilih semua" /></th>
+                <th>Pengguna</th><th>Peranan</th><th>Jabatan / Unit</th><th>Status</th><th>2FA</th><th class="whitespace-nowrap">Log Masuk</th><th class="w-10"></th>
+              </tr></thead>
+              <tbody id="userRows"></tbody>
+            </table>
+          </div>
+          <div class="border-base-300 flex flex-wrap items-center justify-between gap-2 border-t px-4 py-3 text-sm">
+            <span class="text-base-content/60">Memaparkan <b id="showing">—</b> daripada 86 pengguna</span>
+            <div class="join"><button class="join-item btn btn-sm" aria-label="Sebelum">«</button><button class="join-item btn btn-sm btn-active">1</button><button class="join-item btn btn-sm">2</button><button class="join-item btn btn-sm">3</button><button class="join-item btn btn-sm">…</button><button class="join-item btn btn-sm">8</button><button class="join-item btn btn-sm" aria-label="Seterusnya">»</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 grid grid-cols-12 gap-5">
+        <!-- Peranan -->
+        <div id="peranan" class="card bg-base-100 col-span-12 scroll-mt-20 shadow-sm xl:col-span-4">
+          <div class="card-body">
+            <div class="flex items-center justify-between"><div><h2 class="font-semibold">Peranan</h2><p class="text-base-content/60 text-sm">Setiap pengguna diberi satu peranan utama</p></div><button class="btn btn-sm gap-1"><iconify-icon icon="lucide:plus"></iconify-icon>Peranan Baharu</button></div>
+            <ul class="divide-base-300 mt-2 divide-y" id="roleList"></ul>
+          </div>
+        </div>
+
+        <!-- Matriks kebenaran -->
+        <div id="kebenaran" class="card bg-base-100 col-span-12 scroll-mt-20 shadow-sm xl:col-span-8">
+          <div class="card-body">
+            <div class="flex flex-wrap items-center justify-between gap-2"><div><h2 class="font-semibold">Matriks Kebenaran</h2><p class="text-base-content/60 text-sm">Akses setiap peranan mengikut modul</p></div>
+              <div class="flex items-center gap-3 text-xs"><span class="flex items-center gap-1"><iconify-icon icon="lucide:circle-check" class="text-success"></iconify-icon>Penuh</span><span class="flex items-center gap-1"><iconify-icon icon="lucide:eye" class="text-info"></iconify-icon>Lihat</span><span class="flex items-center gap-1"><iconify-icon icon="lucide:minus" class="text-base-content/30"></iconify-icon>Tiada</span></div></div>
+            <div class="mt-2 overflow-x-auto">
+              <table class="table table-sm text-center [&_td]:px-1 [&_th]:px-1" id="permTable"></table>
+            </div>
+            <div class="mt-3 flex justify-end gap-2"><button class="btn btn-sm btn-ghost">Batal</button><button class="btn btn-sm btn-primary" id="savePerm">Simpan Kebenaran</button></div>
+          </div>
+        </div>
+
+        <!-- Sesi aktif -->
+        <div id="sesi" class="card bg-base-100 col-span-12 scroll-mt-20 shadow-sm">
+          <div class="card-body">
+            <div class="flex flex-wrap items-center justify-between gap-2"><div><h2 class="font-semibold">Sesi Aktif</h2><p class="text-base-content/60 text-sm">Pengguna yang sedang log masuk ke CMS</p></div><button class="btn btn-sm gap-1 text-error" id="endAll"><iconify-icon icon="lucide:log-out"></iconify-icon>Tamatkan semua sesi lain</button></div>
+            <div class="overflow-x-auto">
+              <table class="table">
+                <thead><tr class="text-base-content/60"><th>Pengguna</th><th>Peranti</th><th>Alamat IP</th><th>Lokasi</th><th>Mula</th><th></th></tr></thead>
+                <tbody id="sessionRows">
+                  <tr><td class="font-medium">Pentadbir Portal <span class="badge badge-xs badge-success badge-soft ms-1">Anda</span></td><td><span class="flex items-center gap-2"><iconify-icon icon="lucide:monitor"></iconify-icon>Chrome · macOS</span></td><td class="font-mono text-xs">10.21.4.18</td><td>Bukit Aman, KL</td><td>Hari ini, 8:02 pg</td><td></td></tr>
+                  <tr><td class="font-medium">Nurul Aina Rahman</td><td><span class="flex items-center gap-2"><iconify-icon icon="lucide:monitor"></iconify-icon>Edge · Windows</span></td><td class="font-mono text-xs">10.21.7.52</td><td>Bukit Aman, KL</td><td>Hari ini, 8:45 pg</td><td class="text-end"><button class="btn btn-ghost btn-xs text-error end-btn">Tamatkan</button></td></tr>
+                  <tr><td class="font-medium">Mohd Faizal Hassan</td><td><span class="flex items-center gap-2"><iconify-icon icon="lucide:smartphone"></iconify-icon>Safari · iOS</span></td><td class="font-mono text-xs">175.139.x.x</td><td>Johor Bahru</td><td>Hari ini, 9:10 pg</td><td class="text-end"><button class="btn btn-ghost btn-xs text-error end-btn">Tamatkan</button></td></tr>
+                  <tr><td class="font-medium">Siti Hajar Ismail</td><td><span class="flex items-center gap-2"><iconify-icon icon="lucide:monitor"></iconify-icon>Chrome · Windows</span></td><td class="font-mono text-xs">10.21.9.14</td><td>IPK Pulau Pinang</td><td>Hari ini, 9:31 pg</td><td class="text-end"><button class="btn btn-ghost btn-xs text-error end-btn">Tamatkan</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel butiran pengguna -->
+      <dialog id="userPanel" class="modal modal-end">
+        <div class="modal-box bg-base-100 h-screen max-h-screen w-full max-w-md rounded-none p-0">
+          <div class="bg-primary relative px-6 pt-6 pb-16 text-white">
+            <form method="dialog"><button class="btn btn-sm btn-circle absolute top-3 right-3 border-0 bg-white/10 text-white shadow-none hover:bg-white/20" aria-label="Tutup">✕</button></form>
+            <p class="text-sm text-white/60">Profil Pengguna</p>
+          </div>
+          <div class="-mt-12 px-6 pb-6" id="drawerBody"></div>
+        </div>
+        <form method="dialog" class="modal-backdrop"><button>tutup</button></form>
+      </dialog>
+
+      <!-- Modal tambah pengguna -->
+      <dialog id="inviteModal" class="modal">
+        <div class="modal-box max-w-lg">
+          <form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute top-3 right-3" aria-label="Tutup">✕</button></form>
+          <h3 class="text-lg font-semibold">Tambah Pengguna</h3>
+          <p class="text-base-content/60 text-sm">Jemputan pengaktifan akan dihantar ke e-mel rasmi pengguna.</p>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <fieldset class="fieldset col-span-2"><legend class="fieldset-legend">Nama penuh</legend><input class="input w-full" id="invName" placeholder="cth. Ahmad Firdaus bin Yusof" /></fieldset>
+            <fieldset class="fieldset col-span-2 sm:col-span-1"><legend class="fieldset-legend">E-mel rasmi</legend><input class="input w-full" type="email" placeholder="nama@rmp.gov.my" /></fieldset>
+            <fieldset class="fieldset col-span-2 sm:col-span-1"><legend class="fieldset-legend">No. badan</legend><input class="input w-full" placeholder="cth. RF123456" /></fieldset>
+            <fieldset class="fieldset col-span-2 sm:col-span-1"><legend class="fieldset-legend">Jabatan / Unit</legend><select class="select w-full" id="invDept"></select></fieldset>
+            <fieldset class="fieldset col-span-2 sm:col-span-1"><legend class="fieldset-legend">Peranan</legend><select class="select w-full" id="invRole"></select></fieldset>
+            <label class="col-span-2 flex items-center gap-2 text-sm"><input type="checkbox" class="checkbox checkbox-sm checkbox-primary" checked />Wajibkan pengesahan 2 langkah (2FA)</label>
+            <label class="col-span-2 flex items-center gap-2 text-sm"><input type="checkbox" class="checkbox checkbox-sm checkbox-primary" />Tetapkan tarikh tamat akses</label>
+          </div>
+          <div class="modal-action"><form method="dialog"><button class="btn btn-sm btn-ghost">Batal</button></form><button class="btn btn-sm btn-primary gap-1" id="sendInvite"><iconify-icon icon="lucide:send"></iconify-icon>Hantar Jemputan</button></div>
+        </div>
+        <form method="dialog" class="modal-backdrop"><button>tutup</button></form>
+      </dialog>
+
+      <div class="toast toast-end z-50" id="toastBox"></div>
+    </main>
+
+
+    <footer class="text-base-content/50 flex flex-wrap justify-between gap-2 px-6 py-4 text-xs">
+      <p>© 2026 Polis Diraja Malaysia · Pengurusan Kandungan Portal</p>
+      <p>Versi 1.0.0</p>
+    </footer>
+  </div>
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <div class="drawer-side z-40">
+    <label for="admin-drawer" aria-label="Tutup menu" class="drawer-overlay"></label>
+    <aside class="bg-primary flex h-full w-[264px] flex-col text-white">
+      <a href="#" class="flex h-16 flex-none items-center gap-3 border-b border-white/10 px-5">
+        <img src="https://rmp2u.rmp.gov.my/media/36685" alt="Logo PDRM" class="h-9 w-auto" />
+        <span class="leading-tight"><span class="font-heading block text-sm font-bold">Portal PDRM</span><span class="block text-[11px] text-white/50">Pengurusan Kandungan</span></span>
+      </a>
+      <nav class="min-h-0 grow overflow-y-auto px-3 pb-4">
+        <p class="side-label">Utama</p>
+        <a href="index.html" class="side-link"><iconify-icon icon="lucide:layout-dashboard"></iconify-icon><span class="grow">Papan Pemuka</span></a>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:chart-line"></iconify-icon><span class="grow">Analitik Portal</span></a>
+        <p class="side-label">Kandungan</p>
+        <details><summary class="side-link cursor-pointer list-none"><iconify-icon icon="lucide:newspaper"></iconify-icon><span class="grow">Pengurusan Kandungan</span><iconify-icon icon="lucide:chevron-right" class="chev !text-sm transition-transform"></iconify-icon></summary><div class="side-sub"><a href="kandungan.html#senarai">Semua Kandungan</a><a href="kandungan.html#editor">Editor &amp; Semakan</a><a href="kandungan.html#jenis">Jenis &amp; Medan</a><a href="kandungan.html#taksonomi">Kategori &amp; Tag</a><a href="kandungan.html#arkib">Arkib</a></div></details>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:calendar-days"></iconify-icon><span class="grow">Takwim Aktiviti</span></a>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:images"></iconify-icon><span class="grow">Galeri</span></a>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:folder-open"></iconify-icon><span class="grow">Pustaka Media</span></a>
+        <p class="side-label">Perolehan</p>
+        <a href="perolehan.html" class="side-link"><iconify-icon icon="lucide:gavel"></iconify-icon><span class="grow">Sebut Harga &amp; Tender</span><span class="badge badge-sm badge-secondary border-0">3</span></a>
+        <p class="side-label">Laman Web</p>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:gallery-horizontal-end"></iconify-icon><span class="grow">Banner &amp; Hebahan</span></a>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:menu-square"></iconify-icon><span class="grow">Menu Navigasi</span></a>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:link"></iconify-icon><span class="grow">e-Perkhidmatan</span></a>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:siren"></iconify-icon><span class="grow">Nur Alert</span></a>
+        <p class="side-label">Interaksi</p>
+        <a href="#" class="side-link"><iconify-icon icon="lucide:inbox"></iconify-icon><span class="grow">Maklum Balas</span><span class="badge badge-sm badge-accent border-0">12</span></a>
+        <p class="side-label">Pentadbiran</p>
+        <a href="pengguna.html" class="side-link is-active"><iconify-icon icon="lucide:users"></iconify-icon><span class="grow">Pengguna &amp; Peranan</span></a>
+        <a href="audit.html" class="side-link"><iconify-icon icon="lucide:scroll-text"></iconify-icon><span class="grow">Log Audit</span></a>
+        <details><summary class="side-link cursor-pointer list-none"><iconify-icon icon="lucide:activity"></iconify-icon><span class="grow">Platform</span><iconify-icon icon="lucide:chevron-right" class="chev !text-sm transition-transform"></iconify-icon></summary><div class="side-sub"><a href="platform.html#status">Status &amp; Prestasi</a><a href="platform.html#berkala">Proses Berkala</a><a href="platform.html#queue">Queue</a><a href="platform.html#konfigurasi">Konfigurasi</a><a href="platform.html#skema">Skema &amp; Rollback</a></div></details>
+      </nav>
+      <div class="flex-none border-t border-white/10 p-3">
+        <div class="rounded-box bg-white/5 p-3 text-sm">
+          <div class="flex justify-between text-white/70"><span>Storan Media</span><span>62%</span></div>
+          <progress class="progress progress-secondary mt-2 h-1.5" value="62" max="100"></progress>
+          <p class="mt-1.5 text-xs text-white/45">31 GB daripada 50 GB digunakan</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Modal carian -->
+<dialog id="searchModal" class="modal modal-top sm:modal-middle">
+  <div class="modal-box p-0">
+    <label class="input input-lg border-base-300 w-full rounded-none border-0 border-b focus-within:outline-none"><iconify-icon icon="lucide:search" class="opacity-50"></iconify-icon><input type="search" placeholder="Cari kandungan, pengguna, tetapan..." /></label>
+    <div class="p-4 text-sm">
+      <p class="text-base-content/50 text-xs font-semibold uppercase">Pintasan</p>
+      <ul class="menu w-full p-0 mt-2"><li><a><iconify-icon icon="lucide:plus"></iconify-icon>Tambah berita baharu</a></li><li><a><iconify-icon icon="lucide:image-up"></iconify-icon>Muat naik banner</a></li><li><a><iconify-icon icon="lucide:inbox"></iconify-icon>Buka peti maklum balas</a></li></ul>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop"><button>tutup</button></form>
+</dialog>
+
+<script>
+  // Data contoh untuk mockup
+  const ROLES = [
+    { name: 'Super Admin',        color: 'badge-accent',    icon: 'shield-alert',   n: 2,  desc: 'Akses penuh termasuk tetapan sistem dan pengguna' },
+    { name: 'Pentadbir Portal',   color: 'badge-primary',   icon: 'shield-check',   n: 6,  desc: 'Urus kandungan, laman web dan pengguna jabatan' },
+    { name: 'Penyemak',           color: 'badge-warning',   icon: 'file-check-2',   n: 12, desc: 'Semak dan luluskan kandungan sebelum diterbitkan' },
+    { name: 'Editor',             color: 'badge-info',      icon: 'pen-line',       n: 14, desc: 'Cipta dan sunting kandungan semua kategori' },
+    { name: 'Penulis',            color: 'badge-neutral',   icon: 'pencil',         n: 38, desc: 'Cipta draf kandungan untuk jabatan sendiri' },
+    { name: 'Pegawai Perolehan',  color: 'badge-secondary', icon: 'gavel',          n: 8,  desc: 'Urus sebut harga, tender dan tarikh berkaitan' },
+    { name: 'Pemantau Platform',  color: 'badge-ghost',     icon: 'activity',       n: 6,  desc: 'Pantau status, queue dan konfigurasi platform' },
+  ];
+  const DEPTS = ['Unit Komunikasi Korporat', 'JPJKK', 'JSJ', 'JSPT', 'JLT', 'JKDNKA', 'Cawangan Khas', 'Bahagian Teknologi Maklumat'];
+  const users = [
+    { name: 'Pentadbir Portal',        email: 'pentadbir@rmp.gov.my',   badge: 'RF100001', role: 'Super Admin',       dept: 'Bahagian Teknologi Maklumat', status: 'Aktif',     mfa: true,  last: 'Dalam talian' },
+    { name: 'Nurul Aina Rahman',       email: 'aina.r@rmp.gov.my',      badge: 'RF204518', role: 'Pentadbir Portal',  dept: 'Unit Komunikasi Korporat',    status: 'Aktif',     mfa: true,  last: 'Dalam talian' },
+    { name: 'Mohd Faizal Hassan',      email: 'faizal.h@rmp.gov.my',    badge: 'RF187342', role: 'Editor',            dept: 'Unit Komunikasi Korporat',    status: 'Aktif',     mfa: true,  last: 'Dalam talian' },
+    { name: 'Siti Hajar Ismail',       email: 'hajar.i@rmp.gov.my',     badge: 'RF231907', role: 'Penyemak',          dept: 'JPJKK',                       status: 'Aktif',     mfa: true,  last: 'Dalam talian' },
+    { name: 'Ahmad Firdaus Yusof',     email: 'firdaus.y@rmp.gov.my',   badge: 'RF198860', role: 'Pegawai Perolehan', dept: 'JLT',                         status: 'Aktif',     mfa: true,  last: 'Semalam, 4:12 ptg' },
+    { name: 'Lim Wei Ling',            email: 'weiling.l@rmp.gov.my',   badge: 'RF240113', role: 'Penulis',           dept: 'JSPT',                        status: 'Aktif',     mfa: false, last: 'Semalam, 11:40 pg' },
+    { name: 'Rajesh a/l Subramaniam',  email: 'rajesh.s@rmp.gov.my',    badge: 'RF176025', role: 'Pemantau Platform', dept: 'Bahagian Teknologi Maklumat', status: 'Aktif',     mfa: true,  last: '7 Nov, 9:05 pg' },
+    { name: 'Nor Azlina Abdullah',     email: 'azlina.a@rmp.gov.my',    badge: 'RF209774', role: 'Editor',            dept: 'JSJ',                         status: 'Aktif',     mfa: true,  last: '6 Nov, 3:22 ptg' },
+    { name: 'Khairul Anuar Zakaria',   email: 'khairul.z@rmp.gov.my',   badge: 'RF251630', role: 'Penulis',           dept: 'JKDNKA',                      status: 'Menunggu',  mfa: false, last: '—' },
+    { name: 'Farah Nadia Kamal',       email: 'farah.k@rmp.gov.my',     badge: 'RF252081', role: 'Penulis',           dept: 'Cawangan Khas',               status: 'Menunggu',  mfa: false, last: '—' },
+    { name: 'Hafiz Rosli',             email: 'hafiz.r@rmp.gov.my',     badge: 'RF163498', role: 'Penyemak',          dept: 'JSPT',                        status: 'Digantung', mfa: true,  last: '12 Okt, 10:18 pg' },
+    { name: 'Tan Mei Xin',             email: 'meixin.t@rmp.gov.my',    badge: 'RF228356', role: 'Pentadbir Portal',  dept: 'JPJKK',                       status: 'Aktif',     mfa: true,  last: '5 Nov, 8:50 pg' },
+  ];
+  const MODULES = ['Kandungan', 'Terbitkan / Lulus', 'Perolehan', 'Laman Web', 'Maklum Balas', 'Pengguna', 'Platform', 'Log Audit'];
+  // f = penuh, v = lihat, - = tiada (ikut susunan ROLES)
+  const PERMS = {
+    'Kandungan':         'fffffvv',
+    'Terbitkan / Lulus': 'fff----',
+    'Perolehan':         'ffvv-f-',
+    'Laman Web':         'ffvv---',
+    'Maklum Balas':      'ffvv---',
+    'Pengguna':          'fv-----',
+    'Platform':          'fv----f',
+    'Log Audit':         'fvv---v',
+  };
+
+  const roleOf = n => ROLES.find(r => r.name === n);
+  const initials = n => n.split(' ').filter(w => /^[A-Z]/.test(w)).slice(0, 2).map(w => w[0]).join('');
+  const statusBadge = s => ({ Aktif: 'badge-success', Menunggu: 'badge-warning', Digantung: 'badge-error' })[s];
+  const $ = s => document.querySelector(s);
+  let selected = new Set();
+
+  function toast(msg, type = 'success') {
+    const el = document.createElement('div');
+    el.className = `alert alert-${type} text-sm shadow-lg`;
+    el.innerHTML = `<iconify-icon icon="lucide:${type === 'success' ? 'circle-check' : 'info'}"></iconify-icon><span>${msg}</span>`;
+    $('#toastBox').appendChild(el); setTimeout(() => el.remove(), 3500);
+  }
+
+  // Penapis
+  ROLES.forEach(r => { $('#fRole').add(new Option(r.name, r.name)); $('#invRole').add(new Option(r.name, r.name)); });
+  DEPTS.forEach(d => { $('#fDept').add(new Option(d, d)); $('#invDept').add(new Option(d, d)); });
+  $('#invRole').value = 'Penulis';
+
+  function render() {
+    const q = $('#fSearch').value.toLowerCase(), r = $('#fRole').value, d = $('#fDept').value, s = $('#fStatus').value;
+    const list = users.map((u, i) => ({ ...u, i })).filter(u =>
+      (!q || (u.name + u.email + u.badge).toLowerCase().includes(q)) && (!r || u.role === r) && (!d || u.dept === d) && (!s || u.status === s));
+    $('#userRows').innerHTML = list.map(u => {
+      const online = u.last === 'Dalam talian';
+      return `<tr class="hover:bg-base-200/40 cursor-pointer" data-i="${u.i}">
+        <td><input type="checkbox" class="checkbox checkbox-sm row-check" data-i="${u.i}" ${selected.has(u.i) ? 'checked' : ''} aria-label="Pilih ${u.name}" /></td>
+        <td><div class="flex items-center gap-3">
+          <div class="avatar avatar-placeholder ${online ? 'avatar-online' : ''}"><div class="bg-primary/10 text-primary w-9 rounded-full"><span class="text-xs font-semibold">${initials(u.name)}</span></div></div>
+          <div class="min-w-0"><p class="font-medium whitespace-nowrap">${u.name}</p><p class="text-base-content/50 text-xs whitespace-nowrap">${u.email} · <span class="font-mono">${u.badge}</span></p></div></div></td>
+        <td><span class="badge badge-sm ${roleOf(u.role).color} badge-soft whitespace-nowrap">${u.role}</span></td>
+        <td class="text-sm whitespace-nowrap">${u.dept}</td>
+        <td><span class="badge badge-sm ${statusBadge(u.status)} badge-soft">${u.status}</span></td>
+        <td>${u.mfa ? '<iconify-icon icon="lucide:shield-check" class="text-success text-lg" title="2FA aktif"></iconify-icon>' : '<iconify-icon icon="lucide:shield-off" class="text-base-content/30 text-lg" title="2FA tidak aktif"></iconify-icon>'}</td>
+        <td class="text-sm whitespace-nowrap ${online ? 'text-success font-medium' : 'text-base-content/60'}">${u.last}</td>
+        <td><div class="dropdown dropdown-end"><button tabindex="0" class="btn btn-ghost btn-xs btn-square row-menu" aria-label="Tindakan"><iconify-icon icon="lucide:ellipsis-vertical"></iconify-icon></button>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box border-base-300 z-20 w-52 border p-1.5 shadow-lg">
+            <li><a data-act="view" data-i="${u.i}"><iconify-icon icon="lucide:user"></iconify-icon>Lihat profil</a></li>
+            <li><a data-act="edit" data-i="${u.i}"><iconify-icon icon="lucide:pencil"></iconify-icon>Sunting</a></li>
+            <li><a data-act="reset" data-i="${u.i}"><iconify-icon icon="lucide:key-round"></iconify-icon>Set semula kata laluan</a></li>
+            ${u.status === 'Menunggu' ? `<li><a data-act="resend" data-i="${u.i}"><iconify-icon icon="lucide:send"></iconify-icon>Hantar semula jemputan</a></li>` : ''}
+            <li><a data-act="toggle" data-i="${u.i}"><iconify-icon icon="lucide:${u.status === 'Digantung' ? 'circle-check' : 'ban'}"></iconify-icon>${u.status === 'Digantung' ? 'Aktifkan semula' : 'Gantung akaun'}</a></li>
+          </ul></div></td>
+      </tr>`;
+    }).join('') || `<tr><td colspan="8" class="text-base-content/50 py-10 text-center">Tiada pengguna sepadan dengan penapis.</td></tr>`;
+    $('#countLabel').textContent = `${list.length} keputusan`;
+    $('#showing').textContent = `1–${list.length}`;
+    $('#checkAll').checked = list.length > 0 && list.every(u => selected.has(u.i));
+    updateBulk();
+  }
+
+  function updateBulk() {
+    $('#bulkBar').classList.toggle('hidden', !selected.size);
+    $('#bulkBar').classList.toggle('flex', !!selected.size);
+    $('#bulkCount').textContent = selected.size;
+  }
+
+  function openUser(i) {
+    const u = users[i], r = roleOf(u.role);
+    $('#drawerBody').innerHTML = `
+      <div class="avatar avatar-placeholder"><div class="bg-secondary text-secondary-content ring-base-100 w-20 rounded-full ring-4"><span class="text-xl font-bold">${initials(u.name)}</span></div></div>
+      <h3 class="mt-3 text-lg font-semibold">${u.name}</h3>
+      <p class="text-base-content/60 text-sm">${u.email}</p>
+      <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge badge-sm ${r.color} badge-soft">${u.role}</span><span class="badge badge-sm ${statusBadge(u.status)} badge-soft">${u.status}</span></div>
+      <dl class="border-base-300 mt-5 grid grid-cols-2 gap-x-4 gap-y-3 border-t pt-4 text-sm">
+        <div><dt class="text-base-content/50 text-xs">No. badan</dt><dd class="font-mono">${u.badge}</dd></div>
+        <div><dt class="text-base-content/50 text-xs">Jabatan / Unit</dt><dd>${u.dept}</dd></div>
+        <div><dt class="text-base-content/50 text-xs">Log masuk terakhir</dt><dd>${u.last}</dd></div>
+        <div><dt class="text-base-content/50 text-xs">Pengesahan 2 langkah</dt><dd>${u.mfa ? 'Aktif' : 'Tidak aktif'}</dd></div>
+        <div class="col-span-2"><dt class="text-base-content/50 text-xs">Skop peranan</dt><dd>${r.desc}</dd></div>
+      </dl>
+      <h4 class="mt-6 text-sm font-semibold">Aktiviti terkini</h4>
+      <ul class="mt-2 space-y-3 text-sm">
+        <li class="flex gap-3"><span class="bg-primary mt-1.5 size-2 flex-none rounded-full"></span><span>Menyunting <b class="font-medium">Ops Selamat Deepavali 2026</b><br><span class="text-base-content/50 text-xs">Hari ini, 9:42 pg</span></span></li>
+        <li class="flex gap-3"><span class="bg-base-300 mt-1.5 size-2 flex-none rounded-full"></span><span>Log masuk dari 10.21.7.52<br><span class="text-base-content/50 text-xs">Hari ini, 8:45 pg</span></span></li>
+        <li class="flex gap-3"><span class="bg-base-300 mt-1.5 size-2 flex-none rounded-full"></span><span>Menghantar kandungan untuk semakan<br><span class="text-base-content/50 text-xs">Semalam, 5:10 ptg</span></span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2"><button class="btn btn-sm btn-primary gap-1"><iconify-icon icon="lucide:pencil"></iconify-icon>Sunting</button><button class="btn btn-sm gap-1"><iconify-icon icon="lucide:key-round"></iconify-icon>Set semula kata laluan</button></div>`;
+    userPanel.showModal();
+  }
+
+  $('#userRows').addEventListener('click', e => {
+    const act = e.target.closest('[data-act]');
+    if (act) {
+      const u = users[act.dataset.i];
+      if (act.dataset.act === 'view' || act.dataset.act === 'edit') openUser(+act.dataset.i);
+      else if (act.dataset.act === 'reset') toast(`Pautan set semula dihantar ke ${u.email}`, 'info');
+      else if (act.dataset.act === 'resend') toast(`Jemputan dihantar semula kepada ${u.name}`, 'info');
+      else if (act.dataset.act === 'toggle') { u.status = u.status === 'Digantung' ? 'Aktif' : 'Digantung'; toast(`${u.name}: ${u.status === 'Digantung' ? 'akaun digantung' : 'akaun diaktifkan semula'}`); render(); }
+      document.activeElement.blur(); return;
+    }
+    if (e.target.closest('.row-check, .dropdown')) return;
+    const tr = e.target.closest('tr[data-i]'); if (tr) openUser(+tr.dataset.i);
+  });
+  $('#userRows').addEventListener('change', e => {
+    if (!e.target.matches('.row-check')) return;
+    const i = +e.target.dataset.i; e.target.checked ? selected.add(i) : selected.delete(i); updateBulk();
+  });
+  $('#checkAll').addEventListener('change', e => {
+    document.querySelectorAll('.row-check').forEach(c => { c.checked = e.target.checked; e.target.checked ? selected.add(+c.dataset.i) : selected.delete(+c.dataset.i); });
+    updateBulk();
+  });
+  document.querySelectorAll('[data-bulk]').forEach(b => b.addEventListener('click', () => {
+    const a = b.dataset.bulk;
+    if (a === 'suspend' || a === 'activate') { selected.forEach(i => users[i].status = a === 'suspend' ? 'Digantung' : 'Aktif'); toast(`${selected.size} pengguna ${a === 'suspend' ? 'digantung' : 'diaktifkan'}`); }
+    if (a === 'role') toast('Pilih peranan baharu untuk pengguna dipilih', 'info');
+    if (a !== 'role') selected.clear();
+    render();
+  }));
+  ['#fSearch', '#fRole', '#fDept', '#fStatus'].forEach(s => $(s).addEventListener('input', render));
+
+  // Senarai peranan
+  $('#roleList').innerHTML = ROLES.map(r => `
+    <li class="flex items-center gap-3 py-3">
+      <span class="bg-base-200 text-primary flex size-9 flex-none items-center justify-center rounded-full"><iconify-icon icon="lucide:${r.icon}"></iconify-icon></span>
+      <div class="min-w-0 grow"><p class="text-sm font-medium">${r.name}</p><p class="text-base-content/50 truncate text-xs">${r.desc}</p></div>
+      <span class="text-base-content/60 text-sm whitespace-nowrap">${r.n} pengguna</span>
+      <button class="btn btn-ghost btn-xs btn-square" aria-label="Sunting ${r.name}"><iconify-icon icon="lucide:pencil"></iconify-icon></button>
+    </li>`).join('');
+
+  // Matriks kebenaran (klik untuk kitar: penuh → lihat → tiada)
+  const ICON = { f: '<iconify-icon icon="lucide:circle-check" class="text-success text-lg"></iconify-icon>', v: '<iconify-icon icon="lucide:eye" class="text-info text-lg"></iconify-icon>', '-': '<iconify-icon icon="lucide:minus" class="text-base-content/30 text-lg"></iconify-icon>' };
+  const NEXT = { f: 'v', v: '-', '-': 'f' };
+  $('#permTable').innerHTML = `<thead><tr class="text-base-content/60"><th class="text-start">Modul</th>${ROLES.map(r => `<th class="text-xs font-medium whitespace-nowrap">${r.name.replace(' ', '<br>')}</th>`).join('')}</tr></thead><tbody>` +
+    MODULES.map(m => `<tr><td class="text-start text-sm font-medium whitespace-nowrap">${m}</td>${[...PERMS[m]].map((p, j) =>
+      `<td><button class="btn btn-ghost btn-xs btn-square perm" data-p="${p}" ${j === 0 ? 'disabled title="Super Admin sentiasa akses penuh"' : ''}>${ICON[p]}</button></td>`).join('')}</tr>`).join('') + '</tbody>';
+  $('#permTable').addEventListener('click', e => {
+    const b = e.target.closest('.perm'); if (!b || b.disabled) return;
+    b.dataset.p = NEXT[b.dataset.p]; b.innerHTML = ICON[b.dataset.p];
+  });
+  $('#savePerm').addEventListener('click', () => toast('Kebenaran peranan disimpan dan direkod dalam log audit'));
+
+  // Sesi
+  document.querySelectorAll('.end-btn').forEach(b => b.addEventListener('click', () => { const n = b.closest('tr').cells[0].textContent; b.closest('tr').remove(); toast(`Sesi ${n} ditamatkan`); }));
+  $('#endAll').addEventListener('click', () => { document.querySelectorAll('.end-btn').forEach(b => b.closest('tr').remove()); toast('Semua sesi lain ditamatkan'); });
+
+  // Jemputan & eksport
+  $('#sendInvite').addEventListener('click', () => { const n = $('#invName').value.trim() || 'Pengguna baharu'; inviteModal.close(); toast(`Jemputan dihantar kepada ${n}`); });
+  $('#exportCsv').addEventListener('click', () => {
+    const rows = [['Nama', 'E-mel', 'No. Badan', 'Peranan', 'Jabatan', 'Status', '2FA', 'Log Masuk Terakhir'], ...users.map(u => [u.name, u.email, u.badge, u.role, u.dept, u.status, u.mfa ? 'Ya' : 'Tidak', u.last])];
+    const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv' })), download: 'pengguna-cms-pdrm.csv' });
+    a.click(); URL.revokeObjectURL(a.href);
+  });
+
+  render();
+
+  document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); searchModal.showModal(); } });
+</script>
+</body>
+</html>
