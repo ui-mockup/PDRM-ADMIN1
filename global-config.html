@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Configuration — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="config" data-title="Global Configuration" data-icon="lucide:settings">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="toolbar">
+        <button class="btn btn-success" type="button" data-toast="Configuration saved"><iconify-icon icon="lucide:save"></iconify-icon>Save</button>
+        <a class="btn btn-primary" href="index.html"><iconify-icon icon="lucide:check"></iconify-icon>Save &amp; Close</a>
+        <span class="spacer"></span>
+        <a class="btn btn-danger" href="index.html"><iconify-icon icon="lucide:x"></iconify-icon>Cancel</a>
+      </div>
+
+      <section class="card">
+        <div class="tabs" role="tablist" aria-label="Configuration sections">
+          <button role="tab" aria-selected="true" aria-controls="c-site" id="c1">Site</button>
+          <button role="tab" aria-selected="false" aria-controls="c-system" id="c2" tabindex="-1">System</button>
+          <button role="tab" aria-selected="false" aria-controls="c-server" id="c3" tabindex="-1">Server</button>
+          <button role="tab" aria-selected="false" aria-controls="c-logging" id="c4" tabindex="-1">Logging</button>
+          <button role="tab" aria-selected="false" aria-controls="c-perms" id="c5" tabindex="-1">Permissions</button>
+        </div>
+
+        <div class="card-body">
+          <!-- SITE -->
+          <div class="tab-panel hform" id="c-site" role="tabpanel" aria-labelledby="c1">
+            <h3 style="font-size:15px;margin-bottom:16px">Website</h3>
+            <div class="field"><label for="sitename">Website Name <span class="req">*</span></label><input class="input" id="sitename" value="Polis Diraja Malaysia — Portal Rasmi" /></div>
+            <div class="field"><span class="label">Website Offline</span>
+              <div><div class="switcher">
+                <input type="radio" name="offline" id="offN" checked /><label for="offN">No</label>
+                <input type="radio" name="offline" id="offY" class="no" /><label for="offY">Yes</label>
+              </div><p class="hint">When set to Yes, visitors see the offline message instead of the site.</p></div></div>
+            <div class="field"><label for="editor">Default Editor</label><select class="select" id="editor"><option selected>Editor - TinyMCE</option><option>Editor - CodeMirror</option><option>Editor - None</option></select></div>
+            <div class="field"><label for="access">Default Access Level</label><select class="select" id="access"><option selected>Public</option><option>Registered</option><option>Special</option></select></div>
+            <div class="field"><label for="limit">Default List Limit</label><select class="select" id="limit"><option>10</option><option selected>20</option><option>50</option><option>100</option></select></div>
+
+            <h3 style="font-size:15px;margin:28px 0 16px">Metadata</h3>
+            <div class="field"><label for="metadesc">Site Meta Description</label><textarea class="textarea" id="metadesc">Portal rasmi Polis Diraja Malaysia (PDRM). Maklumat terkini, kenyataan media, perkhidmatan dalam talian dan nasihat keselamatan.</textarea></div>
+            <div class="field"><label for="robots">Robots</label><select class="select" id="robots"><option selected>index, follow</option><option>noindex, follow</option><option>noindex, nofollow</option></select></div>
+
+            <h3 style="font-size:15px;margin:28px 0 16px">SEO</h3>
+            <div class="field"><span class="label">Search Engine Friendly URLs</span>
+              <div class="switcher"><input type="radio" name="sef" id="sefN" class="no" /><label for="sefN">No</label><input type="radio" name="sef" id="sefY" checked /><label for="sefY">Yes</label></div></div>
+            <div class="field"><span class="label">Use URL Rewriting</span>
+              <div class="switcher"><input type="radio" name="rw" id="rwN" class="no" /><label for="rwN">No</label><input type="radio" name="rw" id="rwY" checked /><label for="rwY">Yes</label></div></div>
+          </div>
+
+          <!-- SYSTEM -->
+          <div class="tab-panel hform" id="c-system" role="tabpanel" aria-labelledby="c2" hidden>
+            <div class="field"><span class="label">Debug System</span>
+              <div class="switcher"><input type="radio" name="dbg" id="dbgN" checked /><label for="dbgN">No</label><input type="radio" name="dbg" id="dbgY" class="no" /><label for="dbgY">Yes</label></div></div>
+            <div class="field"><label for="cache">System Cache</label><select class="select" id="cache"><option>Off</option><option selected>Conservative caching</option><option>Progressive caching</option></select></div>
+            <div class="field"><label for="cachetime">Cache Time (minutes)</label><input class="input" id="cachetime" type="number" value="15" style="max-width:140px" /></div>
+            <div class="field"><label for="session">Session Lifetime (minutes)</label><input class="input" id="session" type="number" value="30" style="max-width:140px" /></div>
+          </div>
+
+          <!-- SERVER -->
+          <div class="tab-panel hform" id="c-server" role="tabpanel" aria-labelledby="c3" hidden>
+            <div class="field"><label for="tz">Website Time Zone</label><select class="select" id="tz"><option selected>Asia/Kuala_Lumpur</option><option>UTC</option></select></div>
+            <div class="field"><label for="gzip">Gzip Page Compression</label><select class="select" id="gzip"><option>No</option><option selected>Yes</option></select></div>
+            <div class="field"><label for="ssl">Force HTTPS</label><select class="select" id="ssl"><option>None</option><option>Administrator Only</option><option selected>Entire Site</option></select></div>
+            <h3 style="font-size:15px;margin:28px 0 16px">Mail</h3>
+            <div class="field"><label for="mailer">Mailer</label><select class="select" id="mailer"><option>PHP Mail</option><option selected>SMTP</option><option>Sendmail</option></select></div>
+            <div class="field"><label for="from">From Email</label><input class="input" id="from" type="email" value="no-reply@example.gov.my" /></div>
+            <div class="field"><label for="fromname">From Name</label><input class="input" id="fromname" value="Portal PDRM" /></div>
+            <div class="field"><span class="label">Test Mail</span><div><button class="btn" type="button" data-toast="Test mail sending is disabled in this static preview"><iconify-icon icon="lucide:send"></iconify-icon>Send Test Mail</button></div></div>
+          </div>
+
+          <!-- LOGGING -->
+          <div class="tab-panel hform" id="c-logging" role="tabpanel" aria-labelledby="c4" hidden>
+            <div class="field"><label for="logpath">Path to Log Folder</label><input class="input" id="logpath" value="/var/www/pdrm/administrator/logs" /></div>
+            <div class="field"><span class="label">Log Almost Everything</span>
+              <div class="switcher"><input type="radio" name="logall" id="laN" checked /><label for="laN">No</label><input type="radio" name="logall" id="laY" class="no" /><label for="laY">Yes</label></div></div>
+            <div class="field"><span class="label">Log Deprecated API</span>
+              <div class="switcher"><input type="radio" name="logdep" id="ldN" checked /><label for="ldN">No</label><input type="radio" name="logdep" id="ldY" class="no" /><label for="ldY">Yes</label></div></div>
+          </div>
+
+          <!-- PERMISSIONS -->
+          <div class="tab-panel" id="c-perms" role="tabpanel" aria-labelledby="c5" hidden>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Group</th><th>Site Login</th><th>Admin Login</th><th>Super User</th><th>Create</th><th>Delete</th></tr></thead>
+                <tbody>
+                  <tr><td>Public</td><td><span class="badge">Not set</span></td><td><span class="badge">Not set</span></td><td><span class="badge">Not set</span></td><td><span class="badge">Not set</span></td><td><span class="badge">Not set</span></td></tr>
+                  <tr><td class="tree-indent-1">Registered</td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge">Not set</span></td><td><span class="badge">Not set</span></td><td><span class="badge">Not set</span></td><td><span class="badge">Not set</span></td></tr>
+                  <tr><td class="tree-indent-2">Editor</td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge">Not set</span></td><td><span class="badge">Not set</span></td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge">Not set</span></td></tr>
+                  <tr><td class="tree-indent-1">Manager</td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge">Not set</span></td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge badge-green">Allowed</span></td></tr>
+                  <tr><td class="tree-indent-1">Super Users</td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge badge-navy">Allowed</span></td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge badge-green">Allowed</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

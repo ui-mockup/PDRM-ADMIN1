@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="users" data-title="Users" data-icon="lucide:users">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="toolbar">
+        <button class="btn btn-success" type="button" data-toast="New user form would open here"><iconify-icon icon="lucide:user-plus"></iconify-icon>New</button>
+        <button class="btn" type="button" data-toast="Selected users activated"><iconify-icon icon="lucide:user-check"></iconify-icon>Activate</button>
+        <button class="btn" type="button" data-toast="Selected users blocked"><iconify-icon icon="lucide:ban"></iconify-icon>Block</button>
+        <button class="btn hide-sm" type="button" data-toast="Batch dialog would open here"><iconify-icon icon="lucide:layers"></iconify-icon>Batch</button>
+        <button class="btn btn-danger" type="button" data-toast="Selected users deleted"><iconify-icon icon="lucide:trash-2"></iconify-icon>Delete</button>
+        <span class="spacer"></span>
+        <a class="btn hide-sm" href="#"><iconify-icon icon="lucide:users-round"></iconify-icon>Groups</a>
+        <a class="btn hide-sm" href="#"><iconify-icon icon="lucide:key-round"></iconify-icon>Access Levels</a>
+      </div>
+
+      <section class="card">
+        <div class="filters">
+          <label class="search"><span class="sr-only">Search users</span><iconify-icon icon="lucide:search"></iconify-icon>
+            <input class="input" type="search" placeholder="Search name, username or email" data-filter="#usersTable" /></label>
+          <select class="select" aria-label="State"><option>- Select State -</option><option>Enabled</option><option>Blocked</option></select>
+          <select class="select" aria-label="Group"><option>- Select Group -</option><option>Super Users</option><option>Administrator</option><option>Publisher</option><option>Editor</option><option>Registered</option></select>
+        </div>
+        <div class="table-wrap">
+          <table class="table table-cards" id="usersTable">
+            <thead><tr><th class="w-check"><input type="checkbox" data-check-all aria-label="Select all" /></th><th>Name</th><th>Username</th><th>Enabled</th><th>Activated</th><th>Groups</th><th>Last visit</th><th class="num">ID</th></tr></thead>
+            <tbody>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td class="t-title"><div class="flex"><span class="avatar gold">SA</span><div><a href="#">Super Admin</a><small>webmaster@example.gov.my</small></div></div></td>
+                <td data-label="Username">admin</td><td data-label="Enabled"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td><td data-label="Activated"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td data-label="Groups"><span class="badge badge-navy">Super Users</span></td><td data-label="Last visit" class="nowrap">Now</td><td data-label="ID" class="num">1</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td class="t-title"><div class="flex"><span class="avatar blue">NA</span><div><a href="#">Nur Aisyah binti Ahmad</a><small>aisyah@example.gov.my</small></div></div></td>
+                <td data-label="Username">aisyah.a</td><td data-label="Enabled"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td><td data-label="Activated"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td data-label="Groups"><span class="badge badge-blue">Editor</span></td><td data-label="Last visit" class="nowrap">6 min ago</td><td data-label="ID" class="num">14</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td class="t-title"><div class="flex"><span class="avatar red">HR</span><div><a href="#">Hafiz Rahman</a><small>hafiz.r@example.gov.my</small></div></div></td>
+                <td data-label="Username">hafiz.r</td><td data-label="Enabled"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td><td data-label="Activated"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td data-label="Groups"><span class="badge badge-gold">Publisher</span></td><td data-label="Last visit" class="nowrap">22 min ago</td><td data-label="ID" class="num">15</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td class="t-title"><div class="flex"><span class="avatar">LT</span><div><a href="#">Lim Tze Wei</a><small>tzewei@example.gov.my</small></div></div></td>
+                <td data-label="Username">tzewei</td><td data-label="Enabled"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td><td data-label="Activated"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td data-label="Groups"><span class="badge badge-navy">Administrator</span></td><td data-label="Last visit" class="nowrap">Yesterday</td><td data-label="ID" class="num">18</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td class="t-title"><div class="flex"><span class="avatar blue">KS</span><div><a href="#">Kavitha Subramaniam</a><small>kavitha@example.gov.my</small></div></div></td>
+                <td data-label="Username">kavitha.s</td><td data-label="Enabled"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td><td data-label="Activated"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td data-label="Groups"><span class="badge badge-blue">Editor</span></td><td data-label="Last visit" class="nowrap">3 days ago</td><td data-label="ID" class="num">21</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td class="t-title"><div class="flex"><span class="avatar gold">AK</span><div><a href="#">Azman Kassim</a><small>azman.k@example.gov.my</small></div></div></td>
+                <td data-label="Username">azman.k</td><td data-label="Enabled"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td><td data-label="Activated"><span class="status off" title="Awaiting activation"><iconify-icon icon="lucide:clock"></iconify-icon></span></td>
+                <td data-label="Groups"><span class="badge">Registered</span></td><td data-label="Last visit" class="nowrap">Never</td><td data-label="ID" class="num">36</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td class="t-title"><div class="flex"><span class="avatar red">ZM</span><div><a href="#">Zulkifli Mohamad</a><small>zul.m@example.gov.my</small></div></div></td>
+                <td data-label="Username">zul.m</td><td data-label="Enabled"><span class="status off" title="Blocked"><iconify-icon icon="lucide:ban"></iconify-icon></span></td><td data-label="Activated"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td data-label="Groups"><span class="badge badge-blue">Editor</span></td><td data-label="Last visit" class="nowrap">4 months ago</td><td data-label="ID" class="num">9</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <span>Showing 1–7 of 37 users</span>
+          <div class="pages">
+            <a href="#" aria-label="Previous page"><iconify-icon icon="lucide:chevron-left"></iconify-icon></a>
+            <a href="#" class="cur" aria-current="page">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a>
+            <a href="#" aria-label="Next page"><iconify-icon icon="lucide:chevron-right"></iconify-icon></a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

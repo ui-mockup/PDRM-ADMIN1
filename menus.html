@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menus — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="menus" data-title="Menus" data-icon="lucide:list-tree">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="toolbar">
+        <button class="btn btn-success" type="button" data-toast="New menu form would open here"><iconify-icon icon="lucide:plus"></iconify-icon>New Menu</button>
+        <button class="btn" type="button" data-toast="New menu item form would open here"><iconify-icon icon="lucide:list-plus"></iconify-icon>New Menu Item</button>
+      </div>
+
+      <div class="grid grid-3">
+        <section class="card menu-card"><div class="card-body">
+          <span class="ic ic-navy"><iconify-icon icon="lucide:panel-top"></iconify-icon></span>
+          <div><h3 style="font-size:15px">Main Menu</h3><span class="muted small">mainmenu · Topbar navigation</span>
+            <div class="nums"><span class="badge badge-green">24 published</span><span class="badge">2 unpublished</span></div></div>
+        </div></section>
+        <section class="card menu-card"><div class="card-body">
+          <span class="ic ic-gold"><iconify-icon icon="lucide:panel-bottom"></iconify-icon></span>
+          <div><h3 style="font-size:15px">Footer Links</h3><span class="muted small">footer · Pautan &amp; Bantuan</span>
+            <div class="nums"><span class="badge badge-green">8 published</span></div></div>
+        </div></section>
+        <section class="card menu-card"><div class="card-body">
+          <span class="ic ic-red"><iconify-icon icon="lucide:link"></iconify-icon></span>
+          <div><h3 style="font-size:15px">Utility Bar</h3><span class="muted small">utility · Soalan Lazim, Hubungi…</span>
+            <div class="nums"><span class="badge badge-green">4 published</span></div></div>
+        </div></section>
+      </div>
+
+      <section class="card">
+        <div class="card-head"><h2>Menu Items: Main Menu</h2>
+          <select class="select" style="margin-left:auto" aria-label="Menu"><option>Main Menu</option><option>Footer Links</option><option>Utility Bar</option></select></div>
+        <div class="filters">
+          <label class="search"><span class="sr-only">Search menu items</span><iconify-icon icon="lucide:search"></iconify-icon>
+            <input class="input" type="search" placeholder="Search menu items" data-filter="#menuTable" /></label>
+        </div>
+        <div class="table-wrap">
+          <table class="table table-cards" id="menuTable">
+            <thead><tr><th class="w-check"><input type="checkbox" data-check-all aria-label="Select all" /></th><th>Status</th><th>Title</th><th>Type</th><th>Home</th><th>Access</th><th class="num">ID</th></tr></thead>
+            <tbody>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Utama</a><small>Alias: home</small></td><td data-label="Type">Featured Articles</td><td data-label="Home"><iconify-icon icon="lucide:house" style="color:var(--gold-dark)" title="Default page"></iconify-icon></td><td data-label="Access">Public</td><td data-label="ID" class="num">101</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Profil</a><small>Alias: profil</small></td><td data-label="Type">Menu Heading</td><td data-label="Home">—</td><td data-label="Access">Public</td><td data-label="ID" class="num">102</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title tree-indent-1"><a href="#">Sejarah</a><small>Alias: sejarah</small></td><td data-label="Type">Single Article</td><td data-label="Home">—</td><td data-label="Access">Public</td><td data-label="ID" class="num">110</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title tree-indent-1"><a href="#">Visi, Misi &amp; Objektif</a><small>Alias: visi-misi</small></td><td data-label="Type">Single Article</td><td data-label="Home">—</td><td data-label="Access">Public</td><td data-label="ID" class="num">111</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title tree-indent-1"><a href="#">Kepimpinan</a><small>Alias: kepimpinan</small></td><td data-label="Type">Category Blog</td><td data-label="Home">—</td><td data-label="Access">Public</td><td data-label="ID" class="num">112</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Media</a><small>Alias: media</small></td><td data-label="Type">Menu Heading</td><td data-label="Home">—</td><td data-label="Access">Public</td><td data-label="ID" class="num">103</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title tree-indent-1"><a href="#">Kenyataan Media</a><small>Alias: kenyataan-media</small></td><td data-label="Type">Category List</td><td data-label="Home">—</td><td data-label="Access">Public</td><td data-label="ID" class="num">120</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Perkhidmatan</a><small>Alias: perkhidmatan</small></td><td data-label="Type">Category Blog</td><td data-label="Home">—</td><td data-label="Access">Public</td><td data-label="ID" class="num">104</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status off"><iconify-icon icon="lucide:x"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">e-Aduan (beta)</a><small>Alias: e-aduan</small></td><td data-label="Type">External URL</td><td data-label="Home">—</td><td data-label="Access">Registered</td><td data-label="ID" class="num">105</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Hubungi Kami</a><small>Alias: hubungi</small></td><td data-label="Type">Contact Form</td><td data-label="Home">—</td><td data-label="Access">Public</td><td data-label="ID" class="num">106</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

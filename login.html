@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrator Login — PDRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="login">
+<div class="login-shell">
+  <header class="login-top">
+    <div id="loginBrand"></div>
+    <a class="pill" href="#" data-toast="Opens the public PDRM site in a new tab"><span class="pill-ic"><iconify-icon icon="lucide:external-link"></iconify-icon></span><span class="pill-text">PDRM</span></a>
+  </header>
+
+  <div class="login-main">
+    <aside class="login-side">
+      <h1>Polis Diraja Malaysia<small>Joomla Administrator Login</small></h1>
+      <div class="support">
+        <h2>Need Support?</h2>
+        <p style="margin:0 0 8px">You can find help here:</p>
+        <a href="https://forum.joomla.org/" target="_blank" rel="noopener"><iconify-icon icon="lucide:external-link"></iconify-icon>Joomla! Support Forum</a>
+        <a href="https://docs.joomla.org/" target="_blank" rel="noopener"><iconify-icon icon="lucide:external-link"></iconify-icon>Joomla! Documentation</a>
+        <a href="https://www.joomla.org/announcements.html" target="_blank" rel="noopener"><iconify-icon icon="lucide:external-link"></iconify-icon>Joomla! News</a>
+      </div>
+    </aside>
+
+    <section class="login-center">
+      <form class="login-card" id="loginForm" novalidate>
+        <div class="logo"><iconify-icon icon="logos:joomla" role="img" aria-label="Joomla! logo"></iconify-icon></div>
+        <div class="autologin" id="autoBox" hidden role="status" aria-live="polite">
+          <iconify-icon icon="lucide:log-in"></iconify-icon>
+          <span>Logging in automatically in <b id="autoSec">3</b>…</span>
+          <button type="button" id="autoCancel">Cancel</button>
+        </div>
+
+        <div class="alert alert-warning login-alert" id="loginError" role="alert">
+          <iconify-icon icon="lucide:circle-alert"></iconify-icon>
+          <div>Username and password do not match or you do not have an account yet.</div>
+        </div>
+
+        <div class="field" id="fUser">
+          <label for="username">Username</label>
+          <input class="input" id="username" name="username" autocomplete="username" value="admin" />
+          <p class="err">Please fill in this field</p>
+        </div>
+        <div class="field" id="fPass">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <input class="input" id="password" name="password" type="password" autocomplete="current-password" value="1234" />
+            <button class="input-btn" type="button" data-toggle-pw aria-label="Show password"><iconify-icon icon="lucide:eye"></iconify-icon></button>
+          </div>
+          <p class="err">Please fill in this field</p>
+        </div>
+        <div class="field">
+          <label for="lang">Language</label>
+          <select class="select" id="lang">
+            <option>Language - Default</option>
+            <option>English (United Kingdom)</option>
+            <option>Bahasa Melayu (ms-MY)</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary btn-login" type="submit">Log in</button>
+        <a class="forgot" href="#" data-toast="Password reset is not part of this design preview"><iconify-icon icon="lucide:external-link"></iconify-icon>Forgot your login details?</a>
+        <p class="demo-hint">Demo login: <b>admin</b> / <b>1234</b></p>
+      </form>
+    </section>
+  </div>
+</div>
+
+<script>
+  // Demo-only login: the check runs in the browser, so this is not real security.
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("loginBrand").outerHTML = window.PDRM_BRAND();
+
+    var DEMO_USER = "admin", DEMO_PASS = "1234";
+    var form = document.getElementById("loginForm");
+    var user = document.getElementById("username");
+    var pass = document.getElementById("password");
+    var err = document.getElementById("loginError");
+    var box = document.getElementById("autoBox");
+    var sec = document.getElementById("autoSec");
+    var timer = null;
+
+    function login() {
+      var ok = true;
+      [[user, "fUser"], [pass, "fPass"]].forEach(function (p) {
+        var empty = !p[0].value.trim();
+        document.getElementById(p[1]).classList.toggle("has-error", empty);
+        if (empty) ok = false;
+      });
+      err.classList.remove("show");
+      if (!ok) return;
+      if (user.value.trim() === DEMO_USER && pass.value === DEMO_PASS) {
+        window.location.href = "index.html";
+      } else {
+        err.classList.add("show");
+      }
+    }
+
+    function stopAuto() {
+      if (timer) { clearInterval(timer); timer = null; }
+      box.hidden = true;
+    }
+
+    form.addEventListener("submit", function (e) { e.preventDefault(); stopAuto(); login(); });
+    document.getElementById("autoCancel").addEventListener("click", stopAuto);
+    [user, pass].forEach(function (i) {
+      i.addEventListener("input", stopAuto);
+      i.addEventListener("focus", stopAuto);
+    });
+
+    // Auto login after 3 seconds, except right after "Log out"
+    if (!/[?&]logout=1/.test(window.location.search)) {
+      var n = 3;
+      box.hidden = false;
+      timer = setInterval(function () {
+        n -= 1;
+        sec.textContent = n;
+        if (n <= 0) { stopAuto(); login(); }
+      }, 1000);
+    }
+  });
+</script>
+</body>
+</html>

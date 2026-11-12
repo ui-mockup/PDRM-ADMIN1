@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Article — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="article-edit" data-title="Articles: Edit" data-icon="lucide:file-pen-line">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="toolbar">
+        <button class="btn btn-success" type="button" data-toast="Article saved"><iconify-icon icon="lucide:save"></iconify-icon>Save</button>
+        <a class="btn btn-primary" href="articles.html"><iconify-icon icon="lucide:check"></iconify-icon>Save &amp; Close</a>
+        <button class="btn hide-sm" type="button" data-toast="Article saved. Ready for a new one"><iconify-icon icon="lucide:plus"></iconify-icon>Save &amp; New</button>
+        <button class="btn hide-sm" type="button"><iconify-icon icon="lucide:eye"></iconify-icon>Preview</button>
+        <span class="spacer"></span>
+        <a class="btn btn-danger" href="articles.html"><iconify-icon icon="lucide:x"></iconify-icon>Close</a>
+      </div>
+
+      <div class="crumbs"><a href="index.html">Home</a><iconify-icon icon="lucide:chevron-right"></iconify-icon><a href="articles.html">Articles</a><iconify-icon icon="lucide:chevron-right"></iconify-icon><span>Edit</span></div>
+
+      <div class="form-row" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr)">
+        <div class="field"><label for="title">Title <span class="req">*</span></label>
+          <input class="input input-lg" id="title" value="Pengambilan Konstabel Polis Ambilan 2026" /></div>
+        <div class="field"><label for="alias">Alias</label>
+          <input class="input input-lg" id="alias" value="pengambilan-konstabel-2026" /></div>
+      </div>
+
+      <section class="card">
+        <div class="tabs" role="tablist" aria-label="Article sections">
+          <button role="tab" aria-selected="true" aria-controls="tab-content" id="t1">Content</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-images" id="t2" tabindex="-1">Images and Links</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-options" id="t3" tabindex="-1">Options</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-publishing" id="t4" tabindex="-1">Publishing</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-perms" id="t5" tabindex="-1">Permissions</button>
+        </div>
+
+        <div class="card-body">
+          <div class="tab-panel" id="tab-content" role="tabpanel" aria-labelledby="t1">
+            <div class="grid grid-main">
+              <div>
+                <div class="editor">
+                  <div class="editor-bar" aria-label="Editor toolbar">
+                    <button type="button" aria-label="Bold"><iconify-icon icon="lucide:bold"></iconify-icon></button>
+                    <button type="button" aria-label="Italic"><iconify-icon icon="lucide:italic"></iconify-icon></button>
+                    <button type="button" aria-label="Underline"><iconify-icon icon="lucide:underline"></iconify-icon></button>
+                    <span class="sep"></span>
+                    <button type="button" aria-label="Heading"><iconify-icon icon="lucide:heading-2"></iconify-icon></button>
+                    <button type="button" aria-label="Bulleted list"><iconify-icon icon="lucide:list"></iconify-icon></button>
+                    <button type="button" aria-label="Numbered list"><iconify-icon icon="lucide:list-ordered"></iconify-icon></button>
+                    <button type="button" aria-label="Quote"><iconify-icon icon="lucide:quote"></iconify-icon></button>
+                    <span class="sep"></span>
+                    <button type="button" aria-label="Link"><iconify-icon icon="lucide:link"></iconify-icon></button>
+                    <button type="button" aria-label="Image"><iconify-icon icon="lucide:image"></iconify-icon></button>
+                    <button type="button" aria-label="Table"><iconify-icon icon="lucide:table"></iconify-icon></button>
+                    <span class="sep"></span>
+                    <button type="button" aria-label="Source code"><iconify-icon icon="lucide:code"></iconify-icon></button>
+                  </div>
+                  <div class="editor-area" contenteditable="true" aria-label="Article text" role="textbox" aria-multiline="true">
+                    <h2>Pengambilan Konstabel Polis Ambilan 2026</h2>
+                    <p>Polis Diraja Malaysia (PDRM) mempelawa warganegara Malaysia yang berkelayakan untuk memohon jawatan <b>Konstabel Polis (YT1)</b> bagi Ambilan 2026.</p>
+                    <h3>Syarat Kelayakan</h3>
+                    <ul>
+                      <li>Warganegara Malaysia berumur 18 hingga 28 tahun.</li>
+                      <li>Memiliki Sijil Pelajaran Malaysia (SPM) atau setaraf.</li>
+                      <li>Sihat tubuh badan dan lulus ujian kecergasan fizikal.</li>
+                    </ul>
+                    <p>Permohonan dibuka sehingga <b>15 Disember 2026</b> melalui sistem e-Pengambilan PDRM.</p>
+                  </div>
+                  <div class="editor-foot">
+                    <button class="btn btn-sm" type="button"><iconify-icon icon="lucide:file-plus"></iconify-icon>Article</button>
+                    <button class="btn btn-sm" type="button"><iconify-icon icon="lucide:image"></iconify-icon>Image</button>
+                    <button class="btn btn-sm" type="button"><iconify-icon icon="lucide:scissors"></iconify-icon>Page Break</button>
+                    <button class="btn btn-sm" type="button"><iconify-icon icon="lucide:separator-horizontal"></iconify-icon>Read More</button>
+                    <button class="btn btn-sm" type="button"><iconify-icon icon="lucide:code"></iconify-icon>Toggle Editor</button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="field"><label for="status">Status</label>
+                  <select class="select" id="status"><option selected>Published</option><option>Unpublished</option><option>Archived</option><option>Trashed</option></select></div>
+                <div class="field"><label for="cat">Category <span class="req">*</span></label>
+                  <select class="select" id="cat"><option>Berita</option><option>Kenyataan Media</option><option selected>Kerjaya</option><option>Nasihat Keselamatan</option><option>Profil</option></select></div>
+                <div class="field"><span class="label">Featured</span>
+                  <div class="switcher">
+                    <input type="radio" name="feat" id="featN" class="no" /><label for="featN">No</label>
+                    <input type="radio" name="feat" id="featY" checked /><label for="featY">Yes</label>
+                  </div></div>
+                <div class="field"><label for="access">Access</label>
+                  <select class="select" id="access"><option selected>Public</option><option>Guest</option><option>Registered</option><option>Special</option><option>Super Users</option></select></div>
+                <div class="field"><label for="language">Language</label>
+                  <select class="select" id="language"><option selected>All</option><option>English (en-GB)</option><option>Bahasa Melayu (ms-MY)</option></select></div>
+                <div class="field"><label for="tags">Tags</label>
+                  <input class="input" id="tags" value="kerjaya, pengambilan, konstabel" /></div>
+                <div class="field"><label for="note">Version Note</label>
+                  <input class="input" id="note" placeholder="Optional note for this version" /></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="tab-images" role="tabpanel" aria-labelledby="t2" hidden>
+            <div class="grid grid-2">
+              <div>
+                <h3 style="font-size:15px;margin-bottom:12px">Intro Image</h3>
+                <div class="field"><label for="imgIntro">Image</label>
+                  <div class="flex"><input class="input" id="imgIntro" value="images/banner/pengambilan-2026.jpg" /><a class="btn" href="media.html">Select</a></div></div>
+                <div class="field"><label for="imgIntroAlt">Image description (alt text)</label><input class="input" id="imgIntroAlt" value="Poster pengambilan konstabel 2026" /></div>
+              </div>
+              <div>
+                <h3 style="font-size:15px;margin-bottom:12px">Full Article Image</h3>
+                <div class="field"><label for="imgFull">Image</label>
+                  <div class="flex"><input class="input" id="imgFull" placeholder="No image selected" /><a class="btn" href="media.html">Select</a></div></div>
+                <div class="field"><label for="imgFullAlt">Image description (alt text)</label><input class="input" id="imgFullAlt" /></div>
+              </div>
+            </div>
+            <div class="field" style="margin-top:20px"><label for="linkA">Link A</label><input class="input" id="linkA" value="https://www.rmp.gov.my/e-pengambilan" /></div>
+          </div>
+
+          <div class="tab-panel hform" id="tab-options" role="tabpanel" aria-labelledby="t3" hidden>
+            <div class="field"><span class="label">Show Title</span><select class="select" aria-label="Show Title"><option>Use Global</option><option>Show</option><option>Hide</option></select></div>
+            <div class="field"><span class="label">Show Author</span><select class="select" aria-label="Show Author"><option>Use Global</option><option>Show</option><option>Hide</option></select></div>
+            <div class="field"><span class="label">Show Publish Date</span><select class="select" aria-label="Show Publish Date"><option>Use Global</option><option>Show</option><option>Hide</option></select></div>
+            <div class="field"><span class="label">Show Hits</span><select class="select" aria-label="Show Hits"><option>Use Global</option><option>Show</option><option>Hide</option></select></div>
+            <div class="field"><label for="layout">Layout</label><select class="select" id="layout"><option>Use Global</option><option>Default</option></select></div>
+          </div>
+
+          <div class="tab-panel" id="tab-publishing" role="tabpanel" aria-labelledby="t4" hidden>
+            <div class="grid grid-2">
+              <div>
+                <div class="field"><label for="pubStart">Start Publishing</label><input class="input" id="pubStart" type="datetime-local" value="2026-11-10T08:00" /></div>
+                <div class="field"><label for="pubEnd">Finish Publishing</label><input class="input" id="pubEnd" type="datetime-local" value="2026-12-15T23:59" /></div>
+                <div class="field"><label for="created">Created Date</label><input class="input" id="created" value="10 Nov 2026 07:42" readonly /></div>
+                <div class="field"><label for="createdBy">Created By</label><input class="input" id="createdBy" value="Jabatan Pengurusan" /></div>
+              </div>
+              <div>
+                <div class="field"><label for="metadesc">Meta Description</label>
+                  <textarea class="textarea" id="metadesc">Permohonan jawatan Konstabel Polis (YT1) PDRM Ambilan 2026 kini dibuka. Semak syarat kelayakan dan cara memohon.</textarea>
+                  <p class="hint">160 characters recommended.</p></div>
+                <div class="field"><label for="robots">Robots</label><select class="select" id="robots"><option>Use Global</option><option>index, follow</option><option>noindex, follow</option><option>noindex, nofollow</option></select></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="tab-perms" role="tabpanel" aria-labelledby="t5" hidden>
+            <div class="alert alert-info" style="margin-bottom:16px"><iconify-icon icon="lucide:info"></iconify-icon><div>Permissions set here apply to this article only. Leave as <b>Inherited</b> to use category settings.</div></div>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Action</th><th>Public</th><th>Editor</th><th>Publisher</th><th>Administrator</th></tr></thead>
+                <tbody>
+                  <tr><td>Delete</td><td>Inherited</td><td>Inherited</td><td>Inherited</td><td><span class="badge badge-green">Allowed</span></td></tr>
+                  <tr><td>Edit</td><td>Inherited</td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge badge-green">Allowed</span></td></tr>
+                  <tr><td>Edit State</td><td>Inherited</td><td><span class="badge badge-red">Denied</span></td><td><span class="badge badge-green">Allowed</span></td><td><span class="badge badge-green">Allowed</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

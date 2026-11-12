@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extensions — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="extensions" data-title="Extensions: Manage" data-icon="lucide:puzzle">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="toolbar">
+        <button class="btn btn-success" type="button" data-toast="Install screen would open here"><iconify-icon icon="lucide:package-plus"></iconify-icon>Install</button>
+        <button class="btn" type="button" data-toast="Checking for updates…"><iconify-icon icon="lucide:refresh-cw"></iconify-icon>Check for Updates</button>
+        <button class="btn" type="button" data-toast="Selected extensions enabled"><iconify-icon icon="lucide:check"></iconify-icon>Enable</button>
+        <button class="btn" type="button" data-toast="Selected extensions disabled"><iconify-icon icon="lucide:x"></iconify-icon>Disable</button>
+        <button class="btn btn-danger" type="button" data-toast="Uninstall needs confirmation on a real site"><iconify-icon icon="lucide:trash-2"></iconify-icon>Uninstall</button>
+      </div>
+
+      <div class="alert alert-info"><iconify-icon icon="lucide:info"></iconify-icon><div><b>2 updates available:</b> Joomla 5.2.2 and Akeeba Backup 10.0.3.</div>
+        <button class="close" type="button" aria-label="Dismiss"><iconify-icon icon="lucide:x"></iconify-icon></button></div>
+
+      <section class="card">
+        <div class="filters">
+          <label class="search"><span class="sr-only">Search extensions</span><iconify-icon icon="lucide:search"></iconify-icon>
+            <input class="input" type="search" placeholder="Search extensions" data-filter="#extTable" /></label>
+          <select class="select" aria-label="Type"><option>- Select Type -</option><option>Component</option><option>Module</option><option>Plugin</option><option>Template</option><option>Language</option></select>
+          <select class="select" aria-label="Location"><option>- Select Location -</option><option>Site</option><option>Administrator</option></select>
+        </div>
+        <div class="table-wrap">
+          <table class="table table-cards" id="extTable">
+            <thead><tr><th class="w-check"><input type="checkbox" data-check-all aria-label="Select all" /></th><th>Status</th><th>Name</th><th>Location</th><th>Type</th><th>Version</th><th>Author</th><th class="num">ID</th></tr></thead>
+            <tbody>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Templat PDRM (Cassiopeia child)</a><small>tpl_pdrm</small></td><td data-label="Location">Site</td><td data-label="Type"><span class="badge badge-gold">Template</span></td><td data-label="Version">2.1.0</td><td data-label="Author">Unit ICT PDRM</td><td data-label="ID" class="num">251</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Akeeba Backup</a> <span class="badge badge-red">Update</span><small>com_akeebabackup</small></td><td data-label="Location">Administrator</td><td data-label="Type"><span class="badge badge-navy">Component</span></td><td data-label="Version">10.0.2</td><td data-label="Author">Akeeba Ltd</td><td data-label="ID" class="num">240</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Mega Menu PDRM</a><small>mod_pdrm_megamenu</small></td><td data-label="Location">Site</td><td data-label="Type"><span class="badge badge-blue">Module</span></td><td data-label="Version">1.4.0</td><td data-label="Author">Unit ICT PDRM</td><td data-label="ID" class="num">252</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Accessibility Toolbar</a><small>plg_system_a11y</small></td><td data-label="Location">Site</td><td data-label="Type"><span class="badge">Plugin</span></td><td data-label="Version">1.2.3</td><td data-label="Author">Unit ICT PDRM</td><td data-label="ID" class="num">253</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Bahasa Melayu (ms-MY)</a><small>ms-MY</small></td><td data-label="Location">Site</td><td data-label="Type"><span class="badge badge-green">Language</span></td><td data-label="Version">5.2.1.1</td><td data-label="Author">Joomla! Malaysia</td><td data-label="ID" class="num">231</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Two Factor Authentication - TOTP</a><small>plg_multifactorauth_totp</small></td><td data-label="Location">Site</td><td data-label="Type"><span class="badge">Plugin</span></td><td data-label="Version">5.2.1</td><td data-label="Author">Joomla! Project</td><td data-label="ID" class="num">487</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status off"><iconify-icon icon="lucide:x"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Content - Vote</a><small>plg_content_vote</small></td><td data-label="Location">Site</td><td data-label="Type"><span class="badge">Plugin</span></td><td data-label="Version">5.2.1</td><td data-label="Author">Joomla! Project</td><td data-label="ID" class="num">456</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Atum</a><small>atum</small></td><td data-label="Location">Administrator</td><td data-label="Type"><span class="badge badge-gold">Template</span></td><td data-label="Version">5.2.1</td><td data-label="Author">Joomla! Project</td><td data-label="ID" class="num">218</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager"><span>Showing 1–8 of 214 extensions</span>
+          <div class="pages"><a href="#" class="cur" aria-current="page">1</a><a href="#">2</a><a href="#">3</a><a href="#">…</a><a href="#">27</a></div></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="media" data-title="Media" data-icon="lucide:images">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="toolbar">
+        <button class="btn btn-success" type="button" data-toast="Upload is disabled in this static preview"><iconify-icon icon="lucide:upload"></iconify-icon>Upload</button>
+        <button class="btn" type="button" data-toast="New folder dialog would open here"><iconify-icon icon="lucide:folder-plus"></iconify-icon>Create New Folder</button>
+        <button class="btn btn-danger" type="button" data-toast="Selected files deleted"><iconify-icon icon="lucide:trash-2"></iconify-icon>Delete</button>
+        <span class="spacer"></span>
+        <label class="search" style="max-width:260px"><span class="sr-only">Search files</span><iconify-icon icon="lucide:search"></iconify-icon><input class="input" type="search" placeholder="Search in folder" /></label>
+      </div>
+
+      <section class="card">
+        <div class="media-layout">
+          <nav class="media-tree" aria-label="Folders">
+            <a href="#"><iconify-icon icon="lucide:hard-drive"></iconify-icon>Local</a>
+            <div class="sub">
+              <a href="#" class="active"><iconify-icon icon="lucide:folder-open"></iconify-icon>images</a>
+              <div class="sub">
+                <a href="#"><iconify-icon icon="lucide:folder"></iconify-icon>banner</a>
+                <a href="#"><iconify-icon icon="lucide:folder"></iconify-icon>berita</a>
+                <a href="#"><iconify-icon icon="lucide:folder"></iconify-icon>sosial</a>
+                <a href="#"><iconify-icon icon="lucide:folder"></iconify-icon>ikon</a>
+              </div>
+              <a href="#"><iconify-icon icon="lucide:folder"></iconify-icon>files</a>
+            </div>
+          </nav>
+          <div>
+            <div class="crumbs" style="padding:14px 18px 0"><iconify-icon icon="lucide:hard-drive"></iconify-icon><a href="#">Local</a><iconify-icon icon="lucide:chevron-right"></iconify-icon><span>images</span></div>
+            <div class="dropzone">
+              <iconify-icon icon="lucide:cloud-upload"></iconify-icon>
+              Drag and drop files here, or <b>click Upload</b>.<br /><span class="small">Allowed: jpg, png, webp, svg, pdf · Max 10 MB</span>
+            </div>
+            <div class="media-grid">
+              <div class="media-item"><div class="thumb"><iconify-icon icon="lucide:folder"></iconify-icon></div><div class="cap"><b>banner</b><small>14 items</small></div></div>
+              <div class="media-item"><div class="thumb"><iconify-icon icon="lucide:folder"></iconify-icon></div><div class="cap"><b>berita</b><small>62 items</small></div></div>
+              <div class="media-item"><div class="thumb"><img src="assets/img/media/pdrm-sosial-1.jpg" alt="" loading="lazy" /></div><div class="cap"><b>pdrm-sosial-1.jpg</b><small>70 KB</small></div></div>
+              <div class="media-item selected"><div class="thumb"><img src="assets/img/media/pdrm-sosial-2.jpg" alt="" loading="lazy" /></div><div class="cap"><b>pdrm-sosial-2.jpg</b><small>55 KB</small></div></div>
+              <div class="media-item"><div class="thumb"><img src="assets/img/media/pdrm-sosial-3.jpg" alt="" loading="lazy" /></div><div class="cap"><b>pdrm-sosial-3.jpg</b><small>72 KB</small></div></div>
+              <div class="media-item"><div class="thumb"><img src="assets/img/media/pdrm-sosial-4.jpg" alt="" loading="lazy" /></div><div class="cap"><b>pdrm-sosial-4.jpg</b><small>113 KB</small></div></div>
+              <div class="media-item"><div class="thumb"><img src="assets/img/media/pdrm-sosial-5.jpg" alt="" loading="lazy" /></div><div class="cap"><b>pdrm-sosial-5.jpg</b><small>96 KB</small></div></div>
+              <div class="media-item"><div class="thumb"><iconify-icon icon="lucide:file-text" style="color:var(--red)"></iconify-icon></div><div class="cap"><b>piagam-pelanggan.pdf</b><small>1.2 MB</small></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

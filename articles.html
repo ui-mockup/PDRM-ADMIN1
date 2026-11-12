@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="articles" data-title="Articles" data-icon="lucide:file-text">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="toolbar">
+        <a class="btn btn-success" href="article-edit.html"><iconify-icon icon="lucide:plus"></iconify-icon>New</a>
+        <button class="btn" type="button" data-toast="Selected articles published"><iconify-icon icon="lucide:check"></iconify-icon>Publish</button>
+        <button class="btn" type="button" data-toast="Selected articles unpublished"><iconify-icon icon="lucide:x"></iconify-icon>Unpublish</button>
+        <button class="btn hide-sm" type="button" data-toast="Selected articles featured"><iconify-icon icon="lucide:star"></iconify-icon>Feature</button>
+        <button class="btn hide-sm" type="button" data-toast="Selected articles archived"><iconify-icon icon="lucide:archive"></iconify-icon>Archive</button>
+        <button class="btn btn-danger" type="button" data-toast="Selected articles moved to trash"><iconify-icon icon="lucide:trash-2"></iconify-icon>Trash</button>
+        <span class="spacer"></span>
+        <button class="btn hide-sm" type="button"><iconify-icon icon="lucide:settings-2"></iconify-icon>Options</button>
+      </div>
+
+      <section class="card">
+        <div class="filters">
+          <label class="search"><span class="sr-only">Search articles</span><iconify-icon icon="lucide:search"></iconify-icon>
+            <input class="input" type="search" placeholder="Search articles" data-filter="#articlesTable" /></label>
+          <select class="select" aria-label="Status"><option>- Select Status -</option><option>Published</option><option>Unpublished</option><option>Archived</option><option>Trashed</option></select>
+          <select class="select" aria-label="Category"><option>- Select Category -</option><option>Berita</option><option>Kenyataan Media</option><option>Kerjaya</option><option>Nasihat Keselamatan</option><option>Profil</option></select>
+          <select class="select hide-sm" aria-label="Author"><option>- Select Author -</option><option>Super Admin</option><option>Unit Komunikasi</option></select>
+          <span class="spacer" style="flex:1"></span>
+          <select class="select" aria-label="Sort"><option>Date created descending</option><option>Title ascending</option><option>Hits descending</option></select>
+        </div>
+        <div class="table-wrap">
+          <table class="table table-cards" id="articlesTable">
+            <thead>
+              <tr>
+                <th class="w-check"><input type="checkbox" data-check-all aria-label="Select all" /></th>
+                <th>Status</th><th>Title</th><th>Access</th><th>Author</th><th>Language</th><th>Date created</th><th class="num">Hits</th><th class="num">ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td data-label="Status"><span class="status on" title="Published"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="article-edit.html">Ops Selamat 23: Kenyataan Media Ketua Polis Negara</a><small>Alias: ops-selamat-23 · Category: Kenyataan Media</small></td>
+                <td data-label="Access">Public</td><td data-label="Author">Unit Komunikasi</td><td data-label="Language"><span class="badge">All</span></td>
+                <td data-label="Date created" class="nowrap">12 Nov 2026</td><td data-label="Hits" class="num">4,812</td><td data-label="ID" class="num">248</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td data-label="Status"><span class="status on" title="Published"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="article-edit.html">Pengambilan Konstabel Polis Ambilan 2026</a> <span class="badge badge-gold"><iconify-icon icon="lucide:star"></iconify-icon>Featured</span><small>Alias: pengambilan-konstabel-2026 · Category: Kerjaya</small></td>
+                <td data-label="Access">Public</td><td data-label="Author">Jabatan Pengurusan</td><td data-label="Language"><span class="badge">All</span></td>
+                <td data-label="Date created" class="nowrap">10 Nov 2026</td><td data-label="Hits" class="num">12,047</td><td data-label="ID" class="num">247</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td data-label="Status"><span class="status off" title="Unpublished"><iconify-icon icon="lucide:x"></iconify-icon></span></td>
+                <td class="t-title"><a href="article-edit.html">Waspada Penipuan Panggilan Telefon (Macau Scam)</a><small>Alias: waspada-macau-scam · Category: Nasihat Keselamatan</small></td>
+                <td data-label="Access">Public</td><td data-label="Author">JSJK</td><td data-label="Language"><span class="badge">ms-MY</span></td>
+                <td data-label="Date created" class="nowrap">09 Nov 2026</td><td data-label="Hits" class="num">0</td><td data-label="ID" class="num">246</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td data-label="Status"><span class="status on" title="Published"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="article-edit.html">Sambutan Hari Polis ke-219</a> <span class="badge badge-gold"><iconify-icon icon="lucide:star"></iconify-icon>Featured</span><small>Alias: hari-polis-219 · Category: Berita</small></td>
+                <td data-label="Access">Public</td><td data-label="Author">Unit Komunikasi</td><td data-label="Language"><span class="badge">All</span></td>
+                <td data-label="Date created" class="nowrap">05 Nov 2026</td><td data-label="Hits" class="num">7,390</td><td data-label="ID" class="num">245</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td data-label="Status"><span class="status on" title="Published"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="article-edit.html">Visi, Misi &amp; Objektif PDRM</a><small>Alias: visi-misi · Category: Profil</small></td>
+                <td data-label="Access">Public</td><td data-label="Author">Super Admin</td><td data-label="Language"><span class="badge">All</span></td>
+                <td data-label="Date created" class="nowrap">01 Nov 2026</td><td data-label="Hits" class="num">2,155</td><td data-label="ID" class="num">244</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td data-label="Status"><span class="status on" title="Published"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="article-edit.html">Semakan Status Saman Trafik Dalam Talian</a><small>Alias: semakan-saman · Category: Perkhidmatan</small></td>
+                <td data-label="Access">Public</td><td data-label="Author">JSPT</td><td data-label="Language"><span class="badge">All</span></td>
+                <td data-label="Date created" class="nowrap">28 Oct 2026</td><td data-label="Hits" class="num">21,604</td><td data-label="ID" class="num">243</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td data-label="Status"><span class="status trash" title="Archived"><iconify-icon icon="lucide:archive"></iconify-icon></span></td>
+                <td class="t-title"><a href="article-edit.html">Pelan Trafik Musim Perayaan 2025</a><small>Alias: pelan-trafik-2025 · Category: Berita</small></td>
+                <td data-label="Access">Public</td><td data-label="Author">JSPT</td><td data-label="Language"><span class="badge">All</span></td>
+                <td data-label="Date created" class="nowrap">15 Dec 2025</td><td data-label="Hits" class="num">9,882</td><td data-label="ID" class="num">198</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td>
+                <td data-label="Status"><span class="status on" title="Published"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="article-edit.html">Piagam Pelanggan</a><small>Alias: piagam-pelanggan · Category: Profil</small></td>
+                <td data-label="Access">Public</td><td data-label="Author">Super Admin</td><td data-label="Language"><span class="badge">All</span></td>
+                <td data-label="Date created" class="nowrap">02 Jan 2025</td><td data-label="Hits" class="num">3,417</td><td data-label="ID" class="num">112</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <span>Showing 1–8 of 248 articles</span>
+          <div class="pages">
+            <a href="#" aria-label="Previous page"><iconify-icon icon="lucide:chevron-left"></iconify-icon></a>
+            <a href="#" class="cur" aria-current="page">1</a><a href="#">2</a><a href="#">3</a><a href="#">…</a><a href="#">31</a>
+            <a href="#" aria-label="Next page"><iconify-icon icon="lucide:chevron-right"></iconify-icon></a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

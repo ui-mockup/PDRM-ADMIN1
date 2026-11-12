@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categories — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="categories" data-title="Articles: Categories" data-icon="lucide:folder-tree">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="toolbar">
+        <button class="btn btn-success" type="button" data-toast="New category form would open here"><iconify-icon icon="lucide:plus"></iconify-icon>New</button>
+        <button class="btn" type="button" data-toast="Selected categories published"><iconify-icon icon="lucide:check"></iconify-icon>Publish</button>
+        <button class="btn" type="button" data-toast="Selected categories unpublished"><iconify-icon icon="lucide:x"></iconify-icon>Unpublish</button>
+        <button class="btn hide-sm" type="button" data-toast="Category tree rebuilt"><iconify-icon icon="lucide:refresh-cw"></iconify-icon>Rebuild</button>
+        <button class="btn btn-danger" type="button" data-toast="Selected categories moved to trash"><iconify-icon icon="lucide:trash-2"></iconify-icon>Trash</button>
+      </div>
+
+      <section class="card">
+        <div class="filters">
+          <label class="search"><span class="sr-only">Search categories</span><iconify-icon icon="lucide:search"></iconify-icon>
+            <input class="input" type="search" placeholder="Search categories" data-filter="#catTable" /></label>
+          <select class="select" aria-label="Status"><option>- Select Status -</option><option>Published</option><option>Unpublished</option></select>
+          <select class="select" aria-label="Max levels"><option>- Select Max Levels -</option><option>1</option><option>2</option><option>3</option></select>
+        </div>
+        <div class="table-wrap">
+          <table class="table table-cards" id="catTable">
+            <thead><tr>
+              <th class="w-check"><input type="checkbox" data-check-all aria-label="Select all" /></th>
+              <th>Status</th><th>Title</th><th class="num">Published</th><th class="num">Unpublished</th><th>Access</th><th class="num">ID</th>
+            </tr></thead>
+            <tbody>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Berita</a><small>Alias: berita</small></td><td data-label="Published" class="num"><span class="badge badge-green">86</span></td><td data-label="Unpublished" class="num"><span class="badge">3</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">8</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title tree-indent-1"><a href="#">Berita Negeri</a><small>Alias: berita-negeri</small></td><td data-label="Published" class="num"><span class="badge badge-green">41</span></td><td data-label="Unpublished" class="num"><span class="badge">0</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">14</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Kenyataan Media</a><small>Alias: kenyataan-media</small></td><td data-label="Published" class="num"><span class="badge badge-green">54</span></td><td data-label="Unpublished" class="num"><span class="badge">1</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">9</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Profil</a><small>Alias: profil</small></td><td data-label="Published" class="num"><span class="badge badge-green">12</span></td><td data-label="Unpublished" class="num"><span class="badge">0</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">2</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title tree-indent-1"><a href="#">Kepimpinan</a><small>Alias: kepimpinan</small></td><td data-label="Published" class="num"><span class="badge badge-green">6</span></td><td data-label="Unpublished" class="num"><span class="badge">0</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">15</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title tree-indent-2"><a href="#">Legasi Ketua Polis Negara</a><small>Alias: legasi-kpn</small></td><td data-label="Published" class="num"><span class="badge badge-green">14</span></td><td data-label="Unpublished" class="num"><span class="badge">0</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">21</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Kerjaya</a><small>Alias: kerjaya</small></td><td data-label="Published" class="num"><span class="badge badge-green">18</span></td><td data-label="Unpublished" class="num"><span class="badge">2</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">10</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status off"><iconify-icon icon="lucide:x"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Nasihat Keselamatan</a><small>Alias: nasihat-keselamatan</small></td><td data-label="Published" class="num"><span class="badge badge-green">22</span></td><td data-label="Unpublished" class="num"><span class="badge">4</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">11</td></tr>
+              <tr><td class="w-check"><input type="checkbox" aria-label="Select" /></td><td data-label="Status"><span class="status on"><iconify-icon icon="lucide:check"></iconify-icon></span></td>
+                <td class="t-title"><a href="#">Perkhidmatan</a><small>Alias: perkhidmatan</small></td><td data-label="Published" class="num"><span class="badge badge-green">27</span></td><td data-label="Unpublished" class="num"><span class="badge">0</span></td><td data-label="Access">Public</td><td data-label="ID" class="num">12</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager"><span>Showing 9 of 9 categories</span></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
