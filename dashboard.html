@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Dashboard — PDRM Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body data-page="dashboard" data-title="Home Dashboard" data-icon="lucide:house">
+<div class="app">
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+
+      <div class="dash">
+        <!-- ===== Left column ===== -->
+        <div class="dash-col">
+
+          <section class="module">
+            <div class="module-head">
+              <h2><iconify-icon icon="lucide:monitor"></iconify-icon>Quick Overview</h2>
+              <button class="icon-btn gear" type="button" aria-label="Module options" data-toast="Module options are not part of this preview"><iconify-icon icon="lucide:settings-2"></iconify-icon></button>
+            </div>
+            <div class="module-body">
+              <div class="tiles">
+                <div class="tile">
+                  <a class="tile-main" href="users.html"><span class="tile-top"><iconify-icon icon="lucide:users"></iconify-icon><span class="cnt">37</span></span>Users</a>
+                  <a class="tile-add" href="users.html" aria-label="Add user" title="Add user"><iconify-icon icon="lucide:plus"></iconify-icon></a>
+                </div>
+                <div class="tile">
+                  <a class="tile-main" href="menus.html"><span class="tile-top"><iconify-icon icon="lucide:list"></iconify-icon><span class="cnt">42</span></span>Menu Items</a>
+                  <a class="tile-add" href="menus.html" aria-label="Add menu item" title="Add menu item"><iconify-icon icon="lucide:plus"></iconify-icon></a>
+                </div>
+                <div class="tile">
+                  <a class="tile-main" href="articles.html"><span class="tile-top"><iconify-icon icon="lucide:file-text"></iconify-icon><span class="cnt">248</span></span>Articles</a>
+                  <a class="tile-add" href="article-edit.html" aria-label="Add article" title="Add article"><iconify-icon icon="lucide:plus"></iconify-icon></a>
+                </div>
+                <div class="tile">
+                  <a class="tile-main" href="media.html"><span class="tile-top"><iconify-icon icon="lucide:image"></iconify-icon></span>Media</a>
+                </div>
+                <div class="tile">
+                  <a class="tile-main" href="extensions.html"><span class="tile-top"><iconify-icon icon="lucide:box"></iconify-icon><span class="cnt">64</span></span>Modules</a>
+                  <a class="tile-add" href="extensions.html" aria-label="Add module" title="Add module"><iconify-icon icon="lucide:plus"></iconify-icon></a>
+                </div>
+                <div class="tile">
+                  <a class="tile-main" href="extensions.html"><span class="tile-top"><iconify-icon icon="lucide:plug"></iconify-icon><span class="cnt">128</span></span>Plugins</a>
+                </div>
+                <div class="tile">
+                  <a class="tile-main" href="extensions.html"><span class="tile-top"><iconify-icon icon="lucide:paintbrush"></iconify-icon></span>Template Styles</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="module">
+            <div class="module-head">
+              <h2>Latest Actions</h2>
+              <button class="icon-btn gear" type="button" aria-label="Module options" data-toast="Module options are not part of this preview"><iconify-icon icon="lucide:settings-2"></iconify-icon></button>
+            </div>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Action</th><th>Date</th></tr></thead>
+                <tbody>
+                  <tr><td>User <a href="users.html">admin</a> logged in to admin</td><td>Less than a minute ago.</td></tr>
+                  <tr><td>User <a href="users.html">aisyah.a</a> updated the article <a href="article-edit.html">Pengambilan Konstabel 2026</a></td><td>12 minutes ago.</td></tr>
+                  <tr><td>User <a href="users.html">hafiz.r</a> uploaded 4 files to images/banner</td><td>One hour ago.</td></tr>
+                  <tr><td>User <a href="users.html">admin</a> logged out from admin</td><td>One day ago.</td></tr>
+                  <tr><td>User <a href="users.html">admin</a> performed a check in to table #__modules</td><td>3 days ago.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="module">
+            <div class="module-head">
+              <h2>Popular Articles</h2>
+              <button class="icon-btn gear" type="button" aria-label="Module options" data-toast="Module options are not part of this preview"><iconify-icon icon="lucide:settings-2"></iconify-icon></button>
+            </div>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Title</th><th>Hits</th><th>Date</th></tr></thead>
+                <tbody>
+                  <tr><td><a href="article-edit.html">Semakan Status Saman Trafik</a></td><td><span class="hits hot">460348</span></td><td class="nowrap">2025-12-22</td></tr>
+                  <tr><td><a href="article-edit.html">Lembaga Pengarah</a></td><td><span class="hits hot">319818</span></td><td class="nowrap">2025-07-21</td></tr>
+                  <tr><td><a href="article-edit.html">Program PDRM</a></td><td><span class="hits warm">3691</span></td><td class="nowrap">2026-05-03</td></tr>
+                  <tr><td><iconify-icon class="lock" icon="lucide:lock" title="Checked out"></iconify-icon><a href="article-edit.html">Legasi Ketua Polis Negara</a></td><td><span class="hits warm">2767</span></td><td class="nowrap">2025-07-21</td></tr>
+                  <tr><td><a href="article-edit.html">Perlesenan Senjata Api</a></td><td><span class="hits warm">2694</span></td><td class="nowrap">2025-12-08</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="module">
+            <a class="add-module" href="#" data-toast="Adding dashboard modules is not part of this preview"><span class="plus"><iconify-icon icon="lucide:plus"></iconify-icon></span>Add module to the dashboard</a>
+          </section>
+        </div>
+
+        <!-- ===== Right column ===== -->
+        <div class="dash-col">
+
+          <section class="module">
+            <div class="module-head">
+              <h2><iconify-icon icon="lucide:wrench"></iconify-icon>System</h2>
+              <button class="icon-btn gear" type="button" aria-label="Module options" data-toast="Module options are not part of this preview"><iconify-icon icon="lucide:settings-2"></iconify-icon></button>
+            </div>
+            <div class="module-body">
+              <div class="tiles">
+                <div class="tile"><a class="tile-main" href="#" data-toast="All items checked in"><span class="tile-top"><iconify-icon icon="lucide:lock-open"></iconify-icon></span>Global Checkin</a></div>
+                <div class="tile"><a class="tile-main" href="#" data-toast="Cache cleared"><span class="tile-top"><iconify-icon icon="lucide:cloud"></iconify-icon></span>Cache</a></div>
+                <div class="tile"><a class="tile-main" href="global-config.html"><span class="tile-top"><iconify-icon icon="lucide:settings"></iconify-icon></span>Global Configuration</a></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="module">
+            <div class="module-head">
+              <h2><iconify-icon icon="lucide:refresh-cw"></iconify-icon>Notifications</h2>
+              <button class="icon-btn gear" type="button" aria-label="Module options" data-toast="Module options are not part of this preview"><iconify-icon icon="lucide:settings-2"></iconify-icon></button>
+            </div>
+            <div class="module-body">
+              <div class="tiles">
+                <div class="tile warn"><a class="tile-main" href="extensions.html"><span class="tile-top"><iconify-icon icon="lucide:refresh-ccw-dot"></iconify-icon></span>Automated Updates are disabled.</a></div>
+                <div class="tile ok"><a class="tile-main" href="extensions.html"><span class="tile-top"><iconify-icon icon="simple-icons:joomla"></iconify-icon></span>Joomla is up to date.</a></div>
+                <div class="tile bad"><a class="tile-main" href="extensions.html"><span class="tile-top"><iconify-icon icon="lucide:star"></iconify-icon></span><span>Updates are available! <span class="n">5</span></span></a></div>
+                <div class="tile bad"><a class="tile-main" href="extensions.html"><span class="tile-top"><iconify-icon icon="lucide:file-warning"></iconify-icon></span><span>Override(s) to check! <span class="n">5</span></span></a></div>
+                <div class="tile bad"><a class="tile-main" href="extensions.html"><span class="tile-top"><iconify-icon icon="lucide:key-round"></iconify-icon></span>5 Download Keys are missing!</a></div>
+                <div class="tile ok"><a class="tile-main" href="users.html"><span class="tile-top"><iconify-icon icon="lucide:users"></iconify-icon></span>No urgent privacy requests.</a></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="module">
+            <div class="module-head">
+              <h2>Logged-in Users</h2>
+              <button class="icon-btn gear" type="button" aria-label="Module options" data-toast="Module options are not part of this preview"><iconify-icon icon="lucide:settings-2"></iconify-icon></button>
+            </div>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Name</th><th>Location</th><th>Date</th></tr></thead>
+                <tbody>
+                  <tr><td><a href="users.html">admin</a></td><td>Administration</td><td class="nowrap">2026-11-13 09:12</td></tr>
+                  <tr><td><a href="users.html">aisyah.a</a></td><td>Administration</td><td class="nowrap">2026-11-13 08:57</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="module">
+            <div class="module-head">
+              <h2>Recently Added Articles</h2>
+              <button class="icon-btn gear" type="button" aria-label="Module options" data-toast="Module options are not part of this preview"><iconify-icon icon="lucide:settings-2"></iconify-icon></button>
+            </div>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Title</th><th>Author</th><th>Date Created</th></tr></thead>
+                <tbody>
+                  <tr><td><a href="article-edit.html">e-Pengambilan Jawatan PDRM</a></td><td>Support</td><td class="nowrap">2026-11-12</td></tr>
+                  <tr><td><a href="article-edit.html">Ops Selamat 23: Kenyataan Media</a></td><td>Support</td><td class="nowrap">2026-11-12</td></tr>
+                  <tr><td><a href="article-edit.html">Pengambilan Konstabel Polis 2026</a></td><td>Support</td><td class="nowrap">2026-11-10</td></tr>
+                  <tr><td><a href="article-edit.html">Sambutan Hari Polis ke-219</a></td><td>Support</td><td class="nowrap">2026-11-05</td></tr>
+                  <tr><td><iconify-icon class="lock" icon="lucide:lock" title="Checked out"></iconify-icon><a href="article-edit.html">Waspada Penipuan Panggilan Telefon</a></td><td>Support</td><td class="nowrap">2026-11-09</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

@@ -8,8 +8,8 @@ It is a design preview only. Nothing is saved, and the login check runs in the b
 
 | File | Page |
 | --- | --- |
-| `login.html` | Administrator login. Demo login is `admin` / `1234`, filled in and submitted automatically after 3 seconds (not after Log out). |
-| `index.html` | Home Dashboard in the Joomla 5 layout (Quick Overview, System, Notifications, Latest Actions, Logged-in Users, Popular and Recently Added Articles) |
+| `index.html` | Administrator login (the first page of the site). Demo login is `admin` / `1234`, filled in and submitted automatically after 3 seconds (not after Log out). |
+| `dashboard.html` | Home Dashboard in the Joomla 5 layout (Quick Overview, System, Notifications, Latest Actions, Logged-in Users, Popular and Recently Added Articles) |
 | `articles.html` | Articles list with filters, bulk actions and pagination |
 | `article-edit.html` | Article editor with tabs (Content, Images, Options, Publishing, Permissions) |
 | `categories.html` | Category tree |
@@ -33,7 +33,7 @@ There is no build step. Icons come from [Iconify](https://iconify.design/) (Luci
 
 ## Run locally
 
-Open `index.html` in a browser, or serve the folder:
+Open `index.html` (the login page) in a browser, or serve the folder:
 
 ```bash
 python3 -m http.server 8000

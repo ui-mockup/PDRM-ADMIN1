@@ -12,7 +12,7 @@
 
   // Sidebar menu. "dash" is the small grid icon on the right of a group (opens that group's main page).
   var NAV = [
-    { id: "dashboard", text: "Home Dashboard", icon: "lucide:house", href: "index.html" },
+    { id: "dashboard", text: "Home Dashboard", icon: "lucide:house", href: "dashboard.html" },
     { text: "Content", icon: "lucide:file-text", dash: "articles.html", children: [
       { id: "articles", text: "Articles", href: "articles.html", add: "article-edit.html" },
       { id: "categories", text: "Categories", href: "categories.html" },
@@ -53,7 +53,7 @@
       'onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'brand-badge\',textContent:\'PD\'}))">';
   }
   function brandHTML() {
-    return '<a class="brand" href="index.html">' + logoHTML() +
+    return '<a class="brand" href="dashboard.html">' + logoHTML() +
       '<span class="brand-text"><b>PDRM Portal</b><small>Joomla! Administrator</small></span></a>';
   }
   window.PDRM_BRAND = brandHTML;
@@ -126,7 +126,7 @@
             '<div class="signed"><iconify-icon icon="lucide:circle-user-round"></iconify-icon>Signed in as admin</div>' +
             '<a href="#" role="menuitem" data-toast="Edit Account is not part of this design preview"><iconify-icon icon="lucide:user"></iconify-icon>Edit Account</a>' +
             '<a href="#" role="menuitem" data-toast="Accessibility Settings is not part of this design preview"><iconify-icon icon="lucide:accessibility"></iconify-icon>Accessibility Settings</a>' +
-            '<a href="login.html?logout=1" role="menuitem"><iconify-icon icon="lucide:power"></iconify-icon>Log out</a>' +
+            '<a href="index.html?logout=1" role="menuitem"><iconify-icon icon="lucide:power"></iconify-icon>Log out</a>' +
           "</div></div></div>";
   }
 
